@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="select_option.jsp" method="post">
+        <label>자동차 :1개만 선택</label><br>
+
+        <select name="car1">
+            <option>현대자동차</option>
+            <option>기아자동차</option>
+            <option>르노커리아</option>
+            <option selected>BMW</option>
+            <option>벤츠</option>
+            <option selected>아우디</option>
+        </select>
+
+        <br><br>
+
+        <label>자동차 :여러개 선택</label><br>
+        
+        <select name="car2" multiple size="6">
+            <option>현대자동차</option>
+            <option>기아자동차</option>
+            <option selected>르노커리아</option>
+            <option>BMW</option>
+            <option>벤츠</option>
+            <option selected>아우디</option>
+        </select>
+        <br>
+        <br>
+        <button>전송</button>
+    </form>
+</body>
+</html>

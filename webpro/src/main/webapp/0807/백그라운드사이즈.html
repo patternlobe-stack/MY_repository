@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        div{
+            width : 30%;
+            height: 200px;
+            margin:  10px;
+            padding : 20px;
+            border : 1px solid blue;
+            background-image: url(../images/Penguins.jpg);
+        }
+        #d1{
+            background-size: auto;
+        }
+        #d2{
+            background-size: cover;
+        }
+        #d3{
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <h3>auto : 원래크기</h3>
+    <div id="d1"></div>
+
+    <h3>cover : div크기에 맞게 자르거나 늘려서 표시</h3>
+    <div id="d2"></div>
+
+    <h3>contain : div크기에 온저하 더 보이도록 설정</h3>
+    <div id="d3"></div>
+
+</body>
+</html>

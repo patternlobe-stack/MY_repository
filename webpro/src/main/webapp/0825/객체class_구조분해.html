@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      class Account {
+        // user  ={name : "aa",  balence : 1000}
+        //   constructor(user){
+        //       this.name =user.name;
+        //       this.balance = user.balance;
+        //   }
+
+        //구조분해
+        constructor({ name, balance }) {
+          this.name = name;
+          this.balance = balance;
+        }
+
+        static infoValue(...acc) {
+          //acc는 rest paremeter, 배열이다
+          //acc[0]{name : "aa",  balance : 1000}
+          // acc[1] {name : "bb",  balance : 3000}, ..
+          // acc[2]..{name : "cc",  balance : 7000}
+
+          let str = "";
+
+          // acc.forEach(function(obj, index){ })
+          // acc.forEach(obj =>{ })
+          //구조분해
+          acc.forEach(({ name, balance }, index) => {
+            str += `${index} -> ${name} : ${balance} <br>`;
+          });
+
+          return str;
+        }
+
+        static st_balance(...acc) {
+          let sum = 0;
+
+          //구조분해
+          acc.forEach(({ balance }) => {
+            sum += balance;
+            console.log(sum);
+          });
+
+          return sum;
+        }
+      }
+
+      const proc1 = () => {
+        //객체생성
+        const acc1 = new Account({ name: "aa", balance: 1000 });
+        const acc2 = new Account({ name: "bb", balance: 3000 });
+        const acc3 = new Account({ name: "cc", balance: 7000 });
+
+        //객체 정보 출력
+        let res = Account.infoValue(acc1, acc2, acc3);
+
+        //balance의 총합 구하기
+        let total = Account.st_balance(acc1, acc2, acc3);
+
+        //출력
+        let str = "객체 정보 <br>";
+        str += `${res} <br>`;
+        str += `balence의 합 : ${total}`;
+
+        document.querySelector("#result1").innerHTML = str;
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+      <div id="result1"></div>
+    </div>
+  </body>
+</html>

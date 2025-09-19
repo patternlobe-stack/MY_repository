@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css">
+
+    <script>
+      //   function login(username) {
+      //     setTimeout(() => {
+      //       console.log("1--", username);
+      //       return username;
+      //     }, 2000);
+      //   }
+
+      //   user = login("홍길동");
+      //   console.log("222--", user);
+
+      function login(username, fncall) {
+        setTimeout(() => {
+          console.log("1--", username);
+          fncall(username);
+        }, 2000);
+      }
+
+      //   login("홍길동", function (user) {
+      //     console.log("2--", user);
+      //   });
+
+      function addToCart(product, fncall) {
+        setTimeout(() => {
+          console.log("11--", product);
+
+          fncall(product);
+        }, 1000);
+      }
+
+      /* addToCart("딸기", function (prod) {
+        console.log("2--", prod);
+      }); */
+      
+      function makePayment(cardNo, product, fncall){
+    	  
+    	  setTimeout( () =>{
+    		 console.log("11---", product) ;
+    		 fncall(cardNo, product);
+    	  }, 3000)
+      }
+      
+     /*  makePayment("12341234", "딸기", function(cno, prod){
+    	  console.log("222--", `${cno}번호로 ${prod}를 결제 햇습니다`)
+      }) */
+      
+      
+      
+      const proc1 = () =>{
+    	  
+    	  let str = "";
+    	  
+    	  login("홍길동", function (user) {
+    	        console.log(`${user}님 환영합니다`);
+    	        
+    	        str += `${user}님 환영합니다<br>`;
+    	   }); 
+    	  
+    	  
+    	  addToCart("딸기", function (prod) {
+    	        console.log(`${prod}를 장바구니에 담았습니다`);
+    	        
+    	        str += `${prod}를 장바구니에 담았습니다<br>`
+    	   });
+    	  
+    	  makePayment("12341234", "딸기", function(cno, prod){
+        	  console.log(`${cno}번호로 ${prod}를 결제 햇습니다`);
+        	  
+        	  str += `${cno}번호로 ${prod}를 결제 햇습니다 <br>`
+          }) 
+          
+          document.querySelector('#result1').innerHTML = str;
+      }
+      
+      const proc2 = () =>{
+    	  
+    	  let str ="";
+    	  
+    	  login("홍길동", function (user) {
+	  	         console.log(`${user}님 환영합니다`);
+	  	        
+	  	         str += `${user}님 환영합니다<br>`;
+	  	         
+	  	         addToCart("딸기", function (prod) {
+		   	             console.log(`${prod}를 장바구니에 담았습니다`);
+		   	        
+		   	             str += `${prod}를 장바구니에 담았습니다<br>`;
+		   	              
+			   	           makePayment("12341234", "딸기", function(cno, prod){
+			   	        	   console.log(`${cno}번호로 ${prod}를 결제 햇습니다`);
+			   	        	  
+			   	        	   str += `${cno}번호로 ${prod}를 결제 햇습니다 <br>`
+			   	        	  
+			   	        	   /* //리뷰쓰기
+			   	        	   review(aa, function(){
+			   	        		   //쿠폰받기
+			   	        		    coupone(100, function(){
+			   	        			    //계속적으로 기능이 추가되면 
+			   	        			    //그에따라 콜백힘수도 증가한다 
+			   	        			    // 반복적으로 콜백 함수가 수행되면 읽기가 복잡하고 유지보수가 어렵고
+			   	        			    //콜백지옥 이라고 한다 
+			   	        		    })
+			   	        		   
+			   	        	   }) */
+			   	        	     
+			   	        	   document.querySelector('#result2').innerHTML = str;
+			   	          }) 
+          
+	   	        });
+  	         
+  	      }); 
+      }
+    </script>
+  </head>
+  <body>
+  <div class = "box">
+     <h3>3개의 기능 - 로그인, 장바구니, 결제하기 <br>
+     3개의 기능이 각각 비동기로 실행 하므로 실행 순서를 보장 할 수 없다 </h3>
+     <input type="button" value="확인" onclick= "proc1()">
+     <br>
+     <br>
+     <div id="result1"></div>
+  </div>  
+  
+   <div class = "box">
+     <h3>3개의 기능 - 로그인, 장바구니, 결제하기 <br>
+     3개의 기능이 각각 비동기로 실행 하므로 실행 순서를 보장 할 수 없다<br>
+     앞기능의결과로 뒤 기능을 실행하기 위해서는 후속메소드 콜백이 필요하다 </h3>
+     <input type="button" value="확인" onclick= "proc2()">
+     <br>
+     <br>
+     <div id="result2"></div>
+  </div> 
+  
+  
+     
+  </body>
+</html>
