@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+ <!--<script src= ..... </script> -->
+<!--  외부스크립트를 만들수 있다.-->
+<script>
+
+$(()=>{
+	
+	$('#addr').on('change',function(){
+		//this :#addr
+	
+	//$('#addr option')
+	let addr = $('option:selected', this).val().trim();
+	
+	 spAddr = $('span').attr('data-address');
+	 spAddr = $('span').data('address');
+	 
+	 console.log(spAddr); //span들 중 첫번째 것만 출력이 됨
+	 
+	 //this: #addr 를 기준으로 형제 중 span 모두를 검색
+	 aa=$(this).siblings('span');
+	 console.log(aa)
+
+	 $(aa).each(function(i,item){
+		 $('aa').eq(i)
+	 })
+	})
+	
+})
+
+
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      주소를 선택하면 해당 주소의 데이타를 result1에 출력
+      </h3>
+ 
+ 	<select id = "addr">
+ 		<option value ="서울">서울</option>
+ 		<option value ="제주">제주</option>
+ 		<option value ="대구">대구</option>
+ 	</select>
+ 		
+ 		<br><br>
+ 		
+ 		<span data-name="코리아1" data-address="제주" data-code="10101">코리아1</span>&nbsp;&nbsp;&nbsp;&nbsp;
+ 		<span data-name="코리아2" data-address="서울" data-code="10102">코리아2</span>&nbsp;&nbsp;&nbsp;&nbsp;
+ 		<span data-name="코리아3" data-address="광주" data-code="10103">코리아3</span>&nbsp;&nbsp;&nbsp;&nbsp;;
+ 		<span data-name="코리아4" data-address="포천" data-code="10104">코리아4</span>&nbsp;&nbsp;&nbsp;&nbsp;
+ 		<span data-name="코리아5" data-address="강릉" data-code="10105">코리아5</span>&nbsp;&nbsp;&nbsp;&nbsp;
+  
+     <div id="result1"></div>
+</div>
+</body>
+</html>

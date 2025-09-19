@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+   MemberVO loginok = (MemberVO) session.getAttribute("loginok");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>레이아웃 페이지</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+  header {
+    height: 70px;
+  }
+  aside {
+    width: 200px;
+    min-height: calc(100vh - 100px);
+    float: left;
+    border-right: 1px solid #ddd;
+  }
+  section {
+    margin-left: 200px;
+    height: calc(100vh - 100px);
+    overflow-y: auto; /* 내용이 길어지면 스크롤바 */
+    padding: 15px;
+  }
+  footer {
+    height: 30px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+  }
+</style>
+</head>
+<body>
+
+<!-- header -->
+<header class="d-flex justify-content-between align-items-center px-3 bg-light border-bottom">
+  <h4 class="m-0">My WebSite</h4>
+  <div>
+    <% if (loginok == null) { %>
+       <!-- 로그인 X -->
+       <a href="login.jsp" class="btn btn-primary">로그인</a>
+       <a href="signup.jsp" class="btn btn-success">회원가입</a>
+    <% } else { %>
+       <!-- 로그인 O -->
+       <div class="dropdown">
+         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+           <%= loginok.getMem_id() %>님 환영합니다
+         </button>
+         <ul class="dropdown-menu dropdown-menu-end">
+           <li><a class="dropdown-item" href="mypage.jsp">내 정보</a></li>
+           <li><a class="dropdown-item" href="logout.jsp">로그아웃</a></li>
+           <li><hr class="dropdown-divider"></li>
+           <li><a class="dropdown-item" href="orders.jsp">주문내역</a></li>
+           <li><a class="dropdown-item" href="settings.jsp">설정</a></li>
+         </ul>
+       </div>
+    <% } %>
+  </div>
+</header>
+
+<!-- aside -->
+<aside class="p-3">
+  <ul class="nav flex-column">
+    <li class="nav-item"><a href="notice.jsp" target="contentFrame" class="nav-link">공지사항</a></li>
+    <li class="nav-item"><a href="qna.jsp" target="contentFrame" class="nav-link">QNA</a></li>
+    <li class="nav-item"><a href="freeboard.jsp" target="contentFrame" class="nav-link">자유게시판</a></li>
+    <li class="nav-item"><a href="bookstore.jsp" target="contentFrame" class="nav-link">북스토어</a></li>
+  </ul>
+</aside>
+
+<!-- section -->
+<section>
+  <iframe name="contentFrame" style="width:100%; height:100%; border:none;"></iframe>
+</section>
+
+<!-- footer -->
+<footer>
+  <small>ⓒ 2025 My WebSite</small>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+package kr.or.ddit.lprod.vo;
+
+public class ProdVO {
+
+	private String prod_id;
+	private String prod_name;
+	private String lprod_gu;
+	private String buyer_id;
+	private String prod_cost;
+	private String prod_price;
+	private int prod_sale;
+	private int prod_size;
+	private int prod_color;
+	public String getProd_id() {
+		return prod_id;
+	}
+	public void setProd_id(String prod_id) {
+		this.prod_id = prod_id;
+	}
+	public String getProd_name() {
+		return prod_name;
+	}
+	public void setProd_name(String prod_name) {
+		this.prod_name = prod_name;
+	}
+	public String getLprod_gu() {
+		return lprod_gu;
+	}
+	public void setLprod_gu(String lprod_gu) {
+		this.lprod_gu = lprod_gu;
+	}
+	public String getBuyer_id() {
+		return buyer_id;
+	}
+	public void setBuyer_id(String buyer_id) {
+		this.buyer_id = buyer_id;
+	}
+	public String getProd_cost() {
+		return prod_cost;
+	}
+	public void setProd_cost(String prod_cost) {
+		this.prod_cost = prod_cost;
+	}
+	public String getProd_price() {
+		return prod_price;
+	}
+	public void setProd_price(String prod_price) {
+		this.prod_price = prod_price;
+	}
+	public int getProd_sale() {
+		return prod_sale;
+	}
+	public void setProd_sale(int prod_sale) {
+		this.prod_sale = prod_sale;
+	}
+	public int getProd_size() {
+		return prod_size;
+	}
+	public void setProd_size(int prod_size) {
+		this.prod_size = prod_size;
+	}
+	public int getProd_color() {
+		return prod_color;
+	}
+	public void setProd_color(int prod_color) {
+		this.prod_color = prod_color;
+	}
+	
+	
+	
+}
+ 
+    

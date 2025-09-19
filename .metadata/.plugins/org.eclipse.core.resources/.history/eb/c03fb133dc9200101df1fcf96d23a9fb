@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+
+<script>
+
+$(()=>{
+
+	$('#all').on('change', function(){
+		//this : #all
+		//현재 요소 #all의 상태값을 -checked-가져온다
+		
+     /* 	res=$(this).prop('checked');
+	
+	//res값이 ture/false 을 class=chk에 설정한다.
+	$('.chk').prop('checked',res);
+	 */
+	 
+		res=$(this).attr('checked');
+	 	console.log(res);
+	 
+	 	$('.chk').attr('checked',res);'
+	
+	})
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+      <h3>전체선택의 상황에 따라 1~5까지의 요소 체크를 변경한다.
+      prop('속성') : 속성의 상태값을 얻는다-checked, slelected, readonly, multiple, disabled
+      prop('속성', true or false)
+      </h3>
+
+      <input type = "checkbox" checked id='all'>전체선택<br><br>
+      
+      <input type = "checkbox" class='chk'>1
+      <input type = "checkbox" class='chk'>2
+      <input type = "checkbox" class='chk'>3
+      <input type = "checkbox" class='chk'>4
+      <input type = "checkbox" class='chk'>5<br><br>
+      
+
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+$(() => {
+//대분류 목록 가져오기 
+	$.ajax({
+		    url : '/Jqpro/LprodList.do',
+		    type : 'get',
+		    success : function(res){
+		    	
+			    	//$(res).each(function(){})
+			    	let code = "";
+		
+			    	$.each(res, function(i, v){   // res 배열을 돌면서 i=index, v=값
+			    	  	  code += `<option value="${v['lprod_gu']}">${v['lprod_nm']}</option>`;
+			    	});
+	
+		    		$('#lprod').html(code);
+	
+		    },
+		    error : function(xhr){
+					alert("상태:"+xhr.status);	        
+		    },
+		    dataType : 'json'
+	})
+	
+	//대분류 목록에서 하나의 항목을 선택하면 
+	//대분류 목록에서 option value값(lqrod_gu)값을 얻어온다.
+	$('#lprod').on('change', function(){
+		//this : #lprod -selecet
+			console.log($('#lprod option:selected').val());
+	
+		
+		//소분류실행
+			$.ajax({
+				    url : '/Jqpro/ProdList.do',//맞춰서 서블릿 만들기 
+				    type : 'post',
+				    data : {lgu:$('#lprod option:selected').val()},
+				    success : function(res){
+					
+				    	let code = "";
+						
+				    	$.each(res, function(i, v){   // res 배열을 돌면서 i=index, v=값
+				    		code += `<option value="${v['prod_id']}">${v['prod_name']}</option>`;
+				    	});
+				    	
+				    	$('#prod').html(code);
+				    },
+					
+				    error: function(xhr){
+						   alert(xhr.status);
+					
+				    },
+					 dataType: 'json' 
+			   })
+ })
+ 
+ //소분류를 선택하면 option value값(prod_id)을 가져온다.
+ //prod_id를 서버로 보내서 상세정보 를 가져온다.
+ $('#prod').on('change', function(){
+	 vid= $('option:selected', this).val().trim();
+	 $.ajax({
+		   url : '/Jqpro/DetailInfo.do',//맞춰서 서블릿 만들기 
+		    data : {id : vid},
+		    type :'post',
+		    success : function(res){
+		    	
+		    	code="<table  class='table table-striped' border='1'>";
+		    	code+="<tr><th>PROD_ID</th>";
+		    	code +=`<td>${res['prod_id']}</td></tr>`;
+		    	
+		    	code+="<tr><th>PROD_NAME</th>";
+		    	code +=`<td>${res['prod_name']}</td></tr>`;
+		    	
+		    	code+="<tr><th>LPROD_GU</th>";
+		    	code +=`<td>${res['lprod_gu']}</td></tr>`; //네트워크 내용 확인해가면서 적기 
+		    
+		    	code+="<tr><th>BUYER_ID</th>";
+		    	code +=`<td>${res['buyer_id']}</td></tr>`;
+		    
+		    	code +="</table>"
+		    }
+		    ,
+		    error: function(xhr){
+		    	alert(xhr.status);
+		    },
+		    dataType: 'json'
+
+		    	$('#result1').html(code);
+ })
+})
+
+})
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+  
+	  <label for="lprod" class="form-label">  [lprod 대분류 목록]</label>
+	<select class="form-select" id="lprod" name="sellist1">
+	</select>
+	
+	  <label for="prod" class="form-label">  [lprod th분류 목록]</label>
+	<select class="form-select" id="prod" name="sellist1">
+	</select>
+<br>
+	[소분류 항목 상세정보 ]<br>
+      <div id="result1"></div>
+</div>
+</body>
+</html>;

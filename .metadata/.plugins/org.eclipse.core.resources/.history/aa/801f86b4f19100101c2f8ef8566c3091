@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+$(function(){
+	
+	$('#text').on('click',function(){
+	    ptext=	$('p').text();  //document.querySelector('p').innerText
+	    
+	    $('#result1').text(ptext)  //세터 document.querySelector('#sesult1').innerText
+	})
+})
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <p>1<span>홍길동</span></p>
+	 <p>2<span>개나리</span></p>
+	 <p>3<span>진달래</span></p>
+      <input type="button" value="text" id="text" />
+      <input type="button" value="html"  id="html"/>
+      <br /><br />
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>

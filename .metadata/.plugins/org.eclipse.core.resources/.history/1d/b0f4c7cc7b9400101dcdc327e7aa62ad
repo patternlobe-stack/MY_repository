@@ -1,0 +1,87 @@
+package kr.or.ddit.lprod.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.ProdVO;
+import kr.or.ddit.util.MyBatisUtil;
+
+// 인터페이스 구현 선언 필요
+public class ProdDaoImpl implements IProdDao {
+	
+	// 싱글톤 패턴 - 자신의 객체를 생성 - 리턴
+	private static IProdDao dao;
+
+	private ProdDaoImpl() {}  // private 생성자
+
+	public static IProdDao getDao() { // 객체 얻는 메서드 (항상 같은 객체만 리턴)
+	    if(dao == null) {
+	        dao = new ProdDaoImpl();
+	    }
+	    return dao;
+	}
+
+	// 대분류
+	@Override
+	public List<LprodVO> selectByLprod() {
+	    List<LprodVO> list = null; 
+	    SqlSession sql = MyBatisUtil.getSqlSession();  
+    // MyBatis SqlSession 객체
+
+	    try {
+	        list = sql.selectList("prod.selectByLprod"); // 매퍼 네임스페이스.id
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	    	sql.commit();
+	    	sql.close();
+	    }
+
+	    return list;
+	}
+	
+
+	
+	// 소분류
+	@Override
+	public   List<ProdVO>  selectByLgu(String id) {
+		 SqlSession  sql = MyBatisUtil.getSqlSession();
+		
+		 List<ProdVO> list= null;  // 나중에 MyBatis/DB 연동 코드 작성
+		 try {
+			list = sql.selectList("prod.selectByLgu",id); //<- 매터에 있는 이름
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			sql.commit();
+			sql.close();
+		}
+		 return list;
+	
+	}
+
+	// 상세보기
+
+	@Override
+	public ProdVO selectById(String id) {
+		
+			 SqlSession  sql = MyBatisUtil.getSqlSession();
+			
+				 ProdVO pvo= null;  // 나중에 MyBatis/DB 연동 코드 작성
+			 try {
+				 pvo = sql.selectOne("prod.selectById", id); //<- 매터에 있는 이름
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}finally {
+				sql.commit();
+				sql.close();
+			}
+			 return pvo;
+		
+	    
+	}
+}

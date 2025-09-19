@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="board">
+
+<!-- 동적쿼리  -->
+<sql id="dynamicCondition">
+<!-- 다른 쿼리에서 <include refid="dynamicCondition"/> 이런 식으로 불러와서 쓸 수 있음. -->
+   <where>
+      <if test="!(searchvo.stype == '' or searchvo.sword == '')">
+         ${searchvo.stype} like  '%'||#{searchvo.sword}||'%'
+       </if>
+   </where>
+</sql>
+
+
+<!-- 전체글갯수 구하기 pinfo : serchvo -page, stype, sword -->
+ <include refid="dynamicCondition"/>
+<select id="getListCount" parameterType="pinfo" resultType="int">
+	    SELECT COUNT(*) 
+	    FROM boardtab 
+	    <include refid="dynamicCondition"/>
+	</select>
+
+<!-- 페이지별 리스트 검색포함 pinfo : serchvo -page, stype, sword  -->
+<select id="pageByList" resultType="boardVO" parameterType="pinfo">
+   
+     select A.* from (
+     select rownum as rnum, B.*  from (
+         select * from boardtab 
+         <include refid="dynamicCondition"/> 
+         order by num desc) B
+         <![CDATA[
+     where rownum <= #{end} ) A 
+  where A.rnum >=#{start}
+    ]]> 
+</select>
+
+
+</mapper>

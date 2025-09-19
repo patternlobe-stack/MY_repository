@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+
+//최초 submit실행시
+//submit실행시 event를 매개변수로 받을 수 있다.
+const fn_listPageServer = (event) =>{
+
+	
+	
+	event.preventDefault();	
+}

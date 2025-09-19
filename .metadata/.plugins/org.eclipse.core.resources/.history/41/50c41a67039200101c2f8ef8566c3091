@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+
+<script>
+$( () =>{
+	$('#btn1').on('click',()=>{
+		
+		$(' .box1 li:first, li:last').css('background','yellow');
+	//	$(' .box1 lli').first().css('background','yellow');
+	//	$(' .box1 lli').last().css('background','yellow');
+		$(' .box1 lli').filter(':first').css('background','yellow');
+	
+	  //$(' .box1 lli:eq(5)').css('background','red');
+		$(' .box1 lli').eq(5).css('background','red');
+		$(' .box1 lli').filter(':eq(5)').css('background','red');
+		
+	//	$(' .box1 lli:lt(4)').css({'font-size':'2.0rem','font-weight':'bold'});
+	//	$(' .box1 lli').lt(4).css({'font-size':'2.0rem','font-weight':'bold'}); 오류남 
+	$(' .box1 lli').filter(':lt(4)').css({'font-size':'2.0rem','font-weight':'bold'});
+		
+	})
+	
+	
+	 $('#btn2').on('click', ()=>{
+		
+		 $(' .box2 li:even').css('background','lime');
+		 $(' .box2 li:even').css('background','lime');
+		 
+		 
+	 })
+})
+</script>
+
+</head>
+<body>
+
+
+<div class="box box1">
+      <h3>
+      </h3>
+      <input type="button" value="확인" id="btn1"/>
+      <br /><br />
+      <body>
+		  <ul>
+		<li>one</li>
+		<li>two</li>
+		<li>three</li>
+		<li>four</li>
+		<li>five</li>
+		<li>six</li>
+		<li>seven</li>
+		<li>eight</li>
+		<li>nine</li>
+		  </ul>
+      <div id="result1"></div>
+</div>
+
+<div class="box box2">
+      <h3>
+      </h3>
+      <input type="button" value="확인" id="btn2"/>
+      <br /><br />
+      <body>
+		  <ul>
+		<li>one</li>
+		<li>two</li>
+		<li>three</li>
+		<li>four</li>
+		<li>five</li>
+		<li>six</li>
+		<li>seven</li>
+		<li>eight</li>
+		<li>nine</li>
+		  </ul>
+		      
+
+      <div id="result1"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+
+$(() => {
+    let count = 0;
+
+    // add 버튼 클릭 시 새로운 요소 추가
+    $('#add').on('click', () => {
+        count++;
+        let nele = `
+            <p>
+                <input type="file" class="ff">
+                <input type="button" value="삭제${count}" class="del">
+            </p>`;
+
+        // 실제 DOM에 붙여주기
+        $('.box').append(nele);
+    });
+
+/*     // bind 방식 (동적 요소에는 적용 안 됨)
+    // $('.del1').bind('click', function(){ ... })
+
+    // delegate 방식 (동적 요소에도 적용됨)
+    $(document).on('click', 'input[class^=del]', function() {
+        // 클릭된 버튼의 부모 <p> 삭제
+        $(this).parent().remove(); */
+        
+        
+        //새로 만든 삭제[버튼의 이벤트 핸들러는 위임방식-delegate
+        $(document).on('click','.del',function(){
+        
+        
+        	$(this).parent()
+        	
+        })
+        
+    });
+
+
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <input type="text" id="name"><br>
+      <input type="file" id="file"><br>
+      
+      <input type="button" value="추가" id="add" />
+      <br /><br />
+
+     
+</div>
+</body>
+</html>

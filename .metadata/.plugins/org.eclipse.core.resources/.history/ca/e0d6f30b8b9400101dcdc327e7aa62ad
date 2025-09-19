@@ -1,0 +1,51 @@
+package kr.or.ddit.lprod.service;
+
+import java.util.List;
+
+import kr.or.ddit.lprod.dao.IProdDao;
+import kr.or.ddit.lprod.dao.ProdDaoImpl;
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.ProdVO;
+
+public class ProdServiceImpl implements IProdService{
+	
+	
+	private IProdDao dao; //1. dao멤버선언 
+	
+	private ProdServiceImpl() { //2. 생성자 (private → 싱글톤 패턴)
+		dao=ProdDaoImpl.getDao();  // DAO 객체 얻기 (DAO도 싱글톤으로 만들어져 있음)
+
+}
+	private static IProdService service;
+
+	public static IProdService getService() {
+	    if(service == null) service = new ProdServiceImpl();
+	    return service;
+	}
+	
+    // ==============================
+    // 4. 메서드 구현부 (DAO 위임)
+    // ==============================
+	
+	@Override
+	public List<LprodVO> selectByLprod() {
+	    // TODO Auto-generated method stub
+	    return dao.selectByLprod();
+	}
+
+	@Override
+	public List<ProdVO> selectByLgu(String lgu) {
+	    // TODO Auto-generated method stub
+	    return dao.selectByLgu(lgu);
+	}
+
+	@Override
+	public ProdVO selectById(String id) {
+		// TODO Auto-generated method stub
+		return dao.selectById(id);
+	}
+}
+	
+	
+	

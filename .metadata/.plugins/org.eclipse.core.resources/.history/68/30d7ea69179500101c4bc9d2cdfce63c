@@ -1,0 +1,27 @@
+<%@page import="com.google.gson.JsonElement"%>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="kr.or.ddit.util.PageInfo"%>
+<%@page import="kr.or.ddit.board.vo.BoardVO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+  
+  
+<%
+//꺼내기 
+List<BoardVO>list = (List<BoardVO>)request.getAttribute("boardList");
+PageInfo pinfo=(PageInfo)request.getAttribute("pinfo");
+
+JsonObject job = new JsonObject();
+job.addProperty("sp", pinfo.getStartPage());
+job.addProperty("ep", pinfo.getEndPage());
+job.addProperty("tp", pinfo.getTotalPage());
+
+
+Gson gson =new Gson();
+JsonElement blist = gson.toJsonTree(list);
+
+job.add("datas", blist)
+%>

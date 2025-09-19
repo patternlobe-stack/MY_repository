@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<style>
+  img {
+    width: 80px; 
+	height:50px;
+  }
+</style>
+
+<script>
+
+
+$(()=>{
+		$('#btn1').on('click', ()=>{
+			//img태그 만들기 
+		vimg =$(`<img src='../images/가구1.jpg' alt=' 가구1.jpg'>` )
+		
+	//	$('#result1').append(vimg);
+			$(vimg).appendTo($('#result1'));
+		})
+$('#btn2').on('click', ()=>{
+	
+	//img태그 만들기
+	vimg = $(`<img src='../images/국화1.jpg' alt='국화1.jpg'>`);
+//	$('#result2').prepend(vimg)
+
+	$(vimg).prependTo($('#result2'))
+
+})
+		
+})
+
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <input type="button" value="append" id="btn1" />
+      <input type="button" value="prepend" id="btn2" />
+      <br /><br />
+		
+	  <div>가구1.jpg</div>
+	  <div>국화1.jpg</div>
+	  
+      <div id="result1"></div>
+      <div id="result2"></div>
+</div>
+
+<div class="box">
+      <h3>
+      </h3>
+      <input type="button" value="append" id="btn3" />
+      <input type="button" value="prepend" id="btn4" />
+      <br /><br />
+		
+	  <div>가구2.jpg</div>
+	  <div>국화2.jpg</div>
+	  
+      <div id="result1"></div>
+      <div id="result2"></div>
+      <div id="result3"></div>
+      <div id="result4"></div>
+</body>
+</html>

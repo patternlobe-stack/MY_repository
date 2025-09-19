@@ -1,0 +1,14 @@
+<%@page import="kr.or.ddit.lprod.vo.LprodVO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+//controller 에서 저장 한 값 꺼내기
+List<LprodVO>list=(List<LprodVO>)request.getAttribute("result");
+
+//List객체를 json형식의 응답데이터 생성 함 
+
+Gson gson = new GsonBulder().setPrettyPrinting().create();
+//json형식의 문자열 으로 직렬화 
+String res =gson.toJson(list);
+%>

@@ -1,0 +1,97 @@
+package kr.or.ddit.board.controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import kr.or.ddit.board.service.BoardServiceImpl;
+import kr.or.ddit.board.service.IBoardService;
+import kr.or.ddit.board.vo.BoardVO;
+import kr.or.ddit.board.vo.SearchVO;
+import kr.or.ddit.util.PageInfo;
+import kr.or.ddit.util.SerialData;
+
+import java.io.IOException;
+import java.util.List;
+
+import com.google.gson.Gson;
+
+/**
+ * Servlet implementation class BoardPageList
+ */
+@WebServlet("/BoardPageList.do")
+public class BoardPageList extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public BoardPageList() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// get, post 둘다 해당되는 경우 service를 선택함 ? 
+		
+		//직렬화된 전송 데이타 읽기 {"sype" : "" ,"sword" : "" , "page" : 1}
+		String reqData = SerialData.changeData(request);
+		
+		//역직렬화
+		Gson gson = new Gson();
+		SearchVO svo = gson.fromJson(reqData, SearchVO.class);
+		//svo.setStype("") svo.setSwors("") svo.setPage(1)
+		
+		
+		//v페이지 정보 얻기
+		IBoardService service = BoardServiceImpl.getService();
+		
+		PageInfo pinfo = new PageInfo();
+		
+		pinfo.setSearchvo(svo);
+		
+		//전체 글 게수 얻기 
+		int count = service.getListCount(pinfo);
+		
+		//전체 글 개수 설정 
+		pinfo.setTotalRecord(count);
+		
+		//1페이지에 출력할 글 개수
+		pinfo.setPerList(3);
+		
+		//한 화면에 출력 페이지 개수 
+		pinfo.setPerPage(2);
+		
+		//현재 페이지를 설정
+		pinfo.setPage(svo.getPage());
+		
+		//전체 페이지 수 구함 
+		pinfo.setTotalPage();
+		
+		// start. end구하기 1~3, 4~6, 7~9 
+		pinfo.setStart();
+		pinfo.setEnd();
+		
+		//startpage, endpage구하기
+		pinfo.setStartPage();
+		pinfo.setEndPage();
+		
+		System.out.println(pinfo);
+		
+		//start, end, searchvo.stype, searchvo.sword
+		List<BoardVO> list = service.pageByList(pinfo);
+		
+		//request에 저장
+		request.setAttribute("pinfo", pinfo);
+		request.setAttribute("boardlist", list);
+		
+		
+		
+		//view페이지로 이동
+	}
+
+}

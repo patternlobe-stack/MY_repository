@@ -1,0 +1,114 @@
+package kr.or.ddit.board.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.board.vo.BoardVO;
+import kr.or.ddit.board.vo.ReplyVO;
+import kr.or.ddit.util.MyBatisUtil;
+import kr.or.ddit.util.PageInfo;
+
+public class BoardDaoImpl implements IBoardDao{
+
+
+private static IBoardDao dao;
+
+private BoardDaoImpl() {}
+
+public static IBoardDao getInstance() {
+	if(dao == null) {
+		dao = new  BoardDaoImpl();
+	}
+	return dao;
+	
+}
+
+@Override
+public List<BoardVO> pageByList(PageInfo pinfo) {
+	List<BoardVO>list = null;
+	SqlSession sql = MyBatisUtil.getSqlSession();  
+	try {
+		list=sql.selectList("board.getListCount"); //그래서 동적 조건으로 한거야?? 
+	} catch (Exception e) {
+        e.printStackTrace();
+}finally {
+	sql.close();
+}
+	return list;
+}
+
+@Override
+public int insertBoard(BoardVO vo) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public int deleteBoard(int num) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public int updateBoard(BoardVO vo) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public int updateHit(int num) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public List<BoardVO> selectByPage(Map<String, Object> map) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public int insertReply(ReplyVO vo) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public int deleteReply(int renum) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public int updateReply(ReplyVO vo) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public List<ReplyVO> selectReply(int bonum) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public int getListCount(PageInfo pinfo) {
+	
+	Int into = null;
+	SqlSession  sql = MyBatisUtil.getSqlSession();
+	try {
+		into = sql.selectList("board.pageByList");
+	} catch (Exception e) {
+        e.printStackTrace();
+	}fanally{
+		sql.close();
+	}
+	 	return into;
+	
+	return 0;
+}
+
+
+}

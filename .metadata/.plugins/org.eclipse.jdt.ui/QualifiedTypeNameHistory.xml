@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.util.MyBatisUtil"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.member.dao.IMemberDao"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.member.dao.MemberDaoImpl"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.member.vo.MemberVO"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.member.service.IMemberService"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.member.service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.util.SerialData"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.lprod.dao.IProdDao"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.lprod.dao.ProdDaoImpl"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.lprod.vo.LprodVO"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.lprod.service.IProdService"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.lprod.service.ProdServiceImpl"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.lprod.vo.ProdVO"/>
+    <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.util.PageInfo"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.board.dao.IBoardDao"/>
+</qualifiedTypeNameHistroy>

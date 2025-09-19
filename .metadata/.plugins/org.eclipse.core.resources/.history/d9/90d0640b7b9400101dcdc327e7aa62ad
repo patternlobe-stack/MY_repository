@@ -1,0 +1,18 @@
+package kr.or.ddit.board.dao;
+
+public class BoardDaoImpl implements IBoardDao{
+
+
+private static IBoardDao dao;
+
+private BoardDaoImpl() {}
+
+public static IBoardDao getInstance() {
+	if(dao == null) {
+		dao = new  BoardDaoImpl();
+	}
+	
+}
+
+
+}

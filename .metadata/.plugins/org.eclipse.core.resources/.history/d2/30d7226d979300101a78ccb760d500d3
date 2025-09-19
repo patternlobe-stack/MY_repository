@@ -1,0 +1,42 @@
+package kr.or.ddit.lprod.dao;
+
+import java.util.List;
+
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.ProdVO;
+
+public class ProrDaoImpl implements{
+	
+	// 싱글톤 패턴 - 자신의 객체를 생성 - 리턴
+	private static IProdDao dao;
+
+	public static IProdDao getDao() {
+	    if(dao == null) {
+	        dao = new ProdDaoImpl();
+	    }
+	    return dao;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	//대분류
+	public List<LprodVO> selectByLprod(){
+	return null;
+}
+	//소분류
+	public List<ProdVO>selectByLgu(String lgu); 
+	//리턴타입LIST            //메소드 이름 
+	
+	//상세보기 
+	public ProdVO selectById(String id); 
+	
+	
+
+}

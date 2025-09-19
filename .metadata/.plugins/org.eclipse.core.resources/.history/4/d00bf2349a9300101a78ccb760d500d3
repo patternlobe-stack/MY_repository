@@ -1,0 +1,28 @@
+package kr.or.ddit.lprod.dao;
+
+import java.util.List;
+
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.ProdVO;
+
+public class ProdDaoImpl implements IProdDao {
+
+	@Override
+	public List<LprodVO> selectByLprod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProdVO> selectByLgu(String lgu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ProdVO selectById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

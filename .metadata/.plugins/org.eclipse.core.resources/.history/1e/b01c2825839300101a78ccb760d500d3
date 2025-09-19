@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+
+<script>
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      추가버튼 클릭시 새로운 버튼을 생성
+	새로운 버튼을 클릭하면 아래 div #result1요소의 배경색을 랜덤으로 변경
+	bind 기능과 delegate 기능을 비교실행 
+    bind기능  - 새로운 버튼의 에벤트 핸들러 실행안됨
+    delegate기능 - 새로운 버튼의 에벤트 핸들러 실행 됨 비교 실행
+	해제버튼 실행
+      
+      </h3>
+      <input type="button" value="추가" id="btn1" />
+      <input type="button" value="해제"  id="stop"/>
+      <br /><br />
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>

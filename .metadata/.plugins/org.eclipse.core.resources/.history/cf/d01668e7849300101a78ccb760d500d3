@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+$(()=>{
+	
+	
+	let count = 0;
+	
+	$(document).on('click','#btn1', function(){})
+	
+	$('#btn1').on('click', function(){
+		count ++;
+		
+		nbtn =$(`<input type = "button" value="새로운버튼${count}">`)
+		
+		$(nbtn).appendTo($('#result1'));
+	})
+	
+	//
+	$(document).on('click','#stop', function(){})
+	$('#stop').on('click', function(){
+		$('#btn1').off('click');
+	})
+})
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      추가버튼 클릭시 새로운 버튼을 생성 - div#result1에 추가 <br>
+	새로운 버튼을 클릭하면 아래 div #result1요소의 배경색을 랜덤으로 변경<br>
+	bind 기능과 delegate 기능을 비교실행 <br>
+    bind기능  - 새로운 버튼의 에벤트 핸들러 실행안됨<br>
+    delegate기능 - 새로운 버튼의 에벤트 핸들러 실행 됨 비교 실행<br>
+	해제버튼 - 추가버튼의 이벤트 헨들러를 삭제실행<br>
+      
+      </h3>
+      <input type="button" value="추가" id="btn1" />
+      <input type="button" value="해제"  id="stop"/>
+      <br /><br />
+
+      <div id="result1"></div>
+      <div id="result2"></div>
+</div>
+</body>
+</html>

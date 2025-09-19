@@ -1,0 +1,23 @@
+package kr.or.ddit.lprod.dao;
+
+import java.util.List;
+
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.ProdVO;
+
+public interface IProdDao {
+	
+	//대분류
+	public List<LprodVO> selectByLprod();
+	
+	//소분류
+	public List<ProdVO>selectByLgu(String lgu); 
+	//리턴타입LIST            //메소드 이름 
+	
+	//상세보기 
+	public ProdVO selectById(String id); 
+	
+	
+
+}

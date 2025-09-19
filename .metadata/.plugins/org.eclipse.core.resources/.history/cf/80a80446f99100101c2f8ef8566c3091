@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+
+<script>
+
+const proc1 = () =>{
+	$('p[class]').css('background','yellow');
+	
+	$('p[class=p_1]').css('color','red');
+
+}
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <p class="p_1">무궁화 꽃이 피었습니당</p>
+      <p class="p_2">장미 꽃이 피었습니당</p>
+      <p class="a_1">진달래 꽃이 피었습니당</p>
+      <p class="a_2">봉선화 꽃이 피었습니당</p>
+      <p>할미 꽃이 피었습니당</p>
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>

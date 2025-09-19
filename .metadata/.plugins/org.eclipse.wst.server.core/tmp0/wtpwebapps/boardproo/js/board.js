@@ -1,0 +1,129 @@
+/**
+ * 
+ */
+
+//최초 submit실행시
+//submit실행시 event를 매개변수로 받을 수 있다.
+const fn_listPageServer = async (event) =>{
+
+	
+//원래 submit의 고유 기능을 제거한다.
+	event.preventDefault();
+	
+	ff=event.target;
+	console.log("event.target", ff);
+	
+	
+	//form의 stype, sword, page의 값을 가져온다.
+	//최초 실행시에는  stype="" sword="" page=1
+	const a = new FormData(ff);
+	fdata = Object.fromEntries(a);
+	
+	console.log("fdata ==",fdata);
+		
+	//서버로 전송
+	res = await fetch(`${mypath}/BoardPageList.do`, {
+		 method: 'post',
+		headers: { 'Content-Type': 'application/json;charset=utf-8' },
+		body: JSON.stringify(fdata)
+			
+	})
+	
+	result = await res.json();
+	
+	//출력 
+	
+	code=`<div class="container mt-3">
+	  <div id="accordion">`
+	  
+	  $.each(result.datas,  function(i, item){
+		
+		//내용 꺼내기-\n ---<br>
+			cont = item.content;
+			cont = item.content;
+			content = cont.replaceAll(/\n/g,"<br>");	
+		
+		code +=`
+		 <div class="card">
+	      <div class="card-header">
+	        <a class="btn" data-bs-toggle="collapse" href="#collapse${item.num}">
+			${item.subject}
+		   </a>
+	      </div>
+	      <div id="collapse${item.num}" class="collapse" data-bs-parent="#accordion">
+	        <div class="card-body">
+			<div class="p12">
+					           <p class="p1">
+					         <span class="pa">${item.password}</span>
+					             작성자<span class="wr">${item.writer}</span>&nbsp;&nbsp;&nbsp; 
+					             이메일<span class="em">${item.mail}</span>&nbsp;&nbsp;&nbsp;  
+					             날짜<span class="da">${item.wdate}</span>&nbsp;&nbsp;&nbsp;
+					             조회수<span class="hit">${item.hit}</span>&nbsp;&nbsp;&nbsp;
+					           </p>
+					           <p class="p2">`
+							   if(uvo != null && uvo.mem_name == item.writer){   // 내가 글쓴이면 보여라
+							      code += `<input type="button" data-idx="${item.num}" data-name="delete" class="action" value="삭제">
+							               <input type="button" data-idx="${item.num}" data-name="modify" class="action" value="수정">`
+							   }
+
+						 code +=`</p>
+					        </div>
+					           <p class="p3 wp3">
+					            ${content}
+					           </p>
+					           <p class="p4">
+					              <textarea rows="" cols="25"></textarea>
+					              <input type="button" data-name="reply" data-idx="${item.num}" class="action" value="등록">
+					           </p>
+			
+	        </div>
+	      </div>
+	    </div>`
+			
+
+		  })
+		  
+		  code+=`</div>
+		  </div>`;
+		  
+		  //board.jsp의 list부분에 출력 
+		  
+		  $('#list').html(code);
+		  
+		  //페이지 출력 -result.sp =1, result.ep=2, result.tp=7
+		  vpager = fn_pagelist(result.sp, result.ep, result.tp);
+		  $('#pagelist').html(vpager);
+		  
+		 
+}
+
+
+const fn_pagelist = (sp,ep,tp)=>{
+	//이전버튼 
+	pager = "";	
+	pager += `<ul class="pagination">`;
+	if(sp>1){
+		pager += ` <li class="page-item"><a id="prev" class="page-link" href="#">Previous</a></li>`;
+	}
+	
+	//페이지 번호
+	for(i=sp; i<=ep; i++){
+		if(i== currentPage){
+		pager+=`	<li class="page-item active"><a class="page-link pageno" href="#">${i}</a></li>`;
+
+		}else{
+			pager+=`<li class="page-item"><a class="page-link pageno" href="#">${i}</a></li>`;
+
+		}
+	}
+	
+	//다음버튼 
+	if(ep<tp){
+		pager += `  <li class="page-item"><a id="next"  class="page-link" href="#">Next</a></li>`;
+	}
+	
+	pager += `</ul>` 
+	
+	return pager;
+	}
+

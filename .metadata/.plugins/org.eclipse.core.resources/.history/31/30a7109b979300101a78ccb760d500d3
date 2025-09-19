@@ -1,0 +1,52 @@
+package kr.or.ddit.lprod.dao;
+
+import java.util.List;
+
+import kr.or.ddit.lprod.vo.LprodVO;
+import kr.or.ddit.lprod.vo.ProdVO;
+
+// 인터페이스 구현 선언 필요
+public class ProrDaoImpl implements IProdDao {
+	
+	// 싱글톤 패턴 - 자신의 객체를 생성 - 리턴
+	private static IProdDao dao;
+
+	private ProrDaoImpl() {}  // private 생성자
+
+	public static IProdDao getDao() {
+	    if(dao == null) {
+	        dao = new ProrDaoImpl();
+	    }
+	    return dao;
+	}
+
+	// 대분류
+	@Override
+	public List<LprodVO> selectByLprod() {
+		 List<LprodVO> list= null;  // 나중에 MyBatis/DB 연동 코드 작성
+	 try {
+		list = sql.selectList("prod.") //<- 매터에 있는 이름
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+	}finally {
+		sql.commit;
+		sql.close;
+	}
+	 return list;
+	
+	
+	}
+	
+	// 소분류
+	@Override
+	public List<ProdVO> selectByLgu(String lgu) {
+	    return null;  // 나중에 SQL 실행 코드 작성
+	}
+	
+	// 상세보기
+	@Override
+	public ProdVO selectById(String id) {
+	    return null;  // 나중에 SQL 실행 코드 작성
+	}
+}

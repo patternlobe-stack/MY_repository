@@ -1,0 +1,42 @@
+package kr.or.ddit.lprod.controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import kr.or.ddit.lprod.service.IProdService;
+import kr.or.ddit.lprod.service.ProdServiceImpl;
+
+import java.io.IOException;
+
+/**
+ * Servlet implementation class ProdList
+ */
+@WebServlet("/ProdList.do")
+public class ProdList extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProdList() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 클라이언트에서 전송데이타 받기 
+		
+		String lgu = request.getParameter("lgu");
+		//서비스 객체 얻기 
+		
+		IProdService service = ProdServiceImpl.getService();
+		
+		List<ProdVO> list = Service.selectByLgu(lgu);
+	}
+
+}

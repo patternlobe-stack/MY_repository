@@ -1,0 +1,44 @@
+package kr.or.ddit.lprod.controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import kr.or.ddit.lprod.service.IProdService;
+import kr.or.ddit.lprod.service.ProdServiceImpl;
+import kr.or.ddit.lprod.vo.ProdVO;
+
+import java.io.IOException;
+
+/**
+ * Servlet implementation class DetailInfo
+ */
+@WebServlet("/DetailInfo.do")
+public class DetailInfo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DetailInfo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String id = request.getParameter("id");
+		
+		IProdService service = ProdServiceImpl.getService();
+		
+		ProdVO vo = service.selectById(id);
+		
+		request.setAttribute("result", vo);
+		request.getRequestDispatcher("/0917/view/detail.jsp").forward(request,response);
+	}
+
+}

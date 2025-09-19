@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	 
+	<!-- 전체리스트 -->
+	<select id="selectAllMember" resultType="memVO">
+		
+		select * from member
+		
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="loginMember" resultType="memVO" parameterType="map">
+		select * from member
+		where mem_id = #{mem_id} and mem_pass = #{mem_pass}
+	</select>
+	
+	
+	<!-- id 중복검사 string 아니면 java.lang.String을 입력해야됨.
+	파라미터 하나일때는 #{}안에 아무거나 넣어도 상관없음 -->
+	<select id="selectById" parameterType="string" resultType="string">
+		select mem_id
+	      from member
+		 where mem_id = #{mem_id}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="memberJoin" parameterType="memVO">
+	
+		insert into member(MEM_ID,MEM_PASS,MEM_NAME,MEM_BIR,MEM_ZIP,MEM_ADD1,MEM_ADD2,MEM_HP,MEM_MAIL)
+		values(#{mem_id},#{mem_pass},#{mem_name},#{mem_bir},#{mem_zip},#{mem_add1},#{mem_add2},#{mem_hp},#{mem_mail})
+	
+	</insert>
+	
+	<!-- 우편번호 찾기 -->
+	<select id="selectByDong" parameterType="string" resultType="zipVO">
+		
+		select * from ziptb
+		 where dong like #{data}||'%' 
+		  
+	</select>
+	
+		
+</mapper>

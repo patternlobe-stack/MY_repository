@@ -1,0 +1,64 @@
+/**
+ * 
+ */
+
+//최초 submit실행시
+//submit실행시 event를 매개변수로 받을 수 있다.
+const fn_listPageServer = async (event) =>{
+
+	
+//원래 submit의 고유 기능을 제거한다.
+	event.preventDefault();
+	
+	ff=event.target;
+	console.log("event.target", ff);
+	
+	
+	//form의 stype, sword, page의 값을 가져온다.
+	//최초 실행시에는  stype="" sword="" page=1
+	const a = new FormData(ff);
+	fdata = Object.fromEntries(a);
+	
+	console.log("fdata ==",fdata);
+		
+	//서버로 전송
+	res = await fetch(`${mypath}/BoardPageList.do`, {
+		 method: 'post',
+		headers: { 'Content-Type': 'application/json;charset=utf-8' },
+		body: JSON.stringify(fdata)
+			
+	})
+	
+	result = await res.json();
+	
+	//출력 
+	
+	code=`<div class="container mt-3">
+	  <div id="accordion">`
+	  
+	  $.each(result.datas,  function(i, item){
+		
+		code +=` <div class="card">
+	      <div class="card-header">
+	        <a class="btn" data-bs-toggle="collapse" href="#collapse${item.num}">
+	          Collapsible Group Item #1
+	        </a>
+	      </div>
+	      <div id="collapse${item.num}" class="collapse show" data-bs-parent="#accordion">
+	        <div class="card-body">
+	          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	        </div>
+	      </div>
+	    </div>`
+			
+
+		  })
+		  
+		  code+=`</div>
+		  </div>`
+		  
+		  
+	 </div>
+  </div>
+	
+}

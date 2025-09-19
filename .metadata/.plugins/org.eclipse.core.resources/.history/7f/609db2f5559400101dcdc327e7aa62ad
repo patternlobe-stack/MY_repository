@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    
+    
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
+
+<c:if test="${empty sessionScope.loginok}">
+  <form action="logpro.jsp" method="post" class="d-flex align-items-center gap-2">
+    <input type="text" name="id" placeholder="아이디" class="form-control form-control-sm" required>
+    <input type="password" name="password" placeholder="비밀번호" class="form-control form-control-sm" required>
+    <button type="button" id="login" class="btn btn-outline-light btn-sm">🔐 로그인</button>
+  </form>
+</c:if>

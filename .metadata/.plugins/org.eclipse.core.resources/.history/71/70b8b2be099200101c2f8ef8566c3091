@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+$( ()=>{
+	
+	$('#btn1').on('click', ()=>{
+		$('#spring option:selected')
+	})
+	
+})
+</script>
+
+</head>
+<body>
+
+
+	<div class="box">
+	      <h3>
+	      </h3>
+	      <input type="button" value="확인" id="btn1" />
+	      <br /><br />
+	      <form>
+	봄소식 : <br>
+	<select name="spring" id="spring" multiple size="6">
+		<option >개나리</option>
+		<option selected>진달래</option>
+		<option>민들레</option>
+		<option selected>벚꽃</option>
+		<option>목련</option>
+		<option>철쭉</option>
+	</select>
+	</form>
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>

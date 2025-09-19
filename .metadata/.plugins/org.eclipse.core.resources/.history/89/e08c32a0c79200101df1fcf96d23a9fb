@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+
+$(()=>{
+
+	 $('p').on('click', function(){
+		
+		 //클릭한 p태그의 \부모를 검색 -.result인지 비교
+		 
+		 $(this).parent().is($('.result'))
+		 
+	 })
+})
+
+
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      
+      
+      <p>거꾸로 오르는 연어처럼</p>
+
+      
+      
+
+      <div id="result1" class="result">
+            <p>거꾸로 오르는 연어처럼</p>    
+      </div>
+      
+       <div id="result2" class="result">
+       <p>거꾸로 오르는 연어처럼</p>    
+      </div>
+</div>
+</body>
+</html>

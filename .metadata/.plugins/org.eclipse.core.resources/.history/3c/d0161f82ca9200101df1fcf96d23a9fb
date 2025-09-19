@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<style>
+img{
+	width:100px;
+	height:100px;
+}
+</style>
+<script>
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <input type="button" value="확인" id="btn1" />
+      <br /><br />
+      <img src="../image/카푸치노.jpg" alt="카푸치노.jpg">
+      <img src="../image/옷2.jpg" alt="옷2.jpg">
+      <img src="../image/영화2.jpg" alt="영화2.jpg">
+      <img src="../image/수지.jpg" alt="수지.jpg">
+      <img src="../image/수국9.jpg" alt="수국9.jpg">
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+
+<script>
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+     <!--  onsubmit="return false;">  -->
+	 <form action ="양식선택.jsp" method="post" >
+		i d: <input type="text"/><br> 
+		Password : <input type="password" /><br><br> 
+		
+		Textarea : <br> 
+		<textarea rows="15" cols="50" id="myTextarea" id="myTextarea"></textarea><br><br> 
+		Image : <input type="image" src="../images/image.1.jpg"><br><br> 
+		File : <input type="file"><br><br> 
+		
+		Buttons : <button type="button" id="normalButton">Normal</button> 
+		<button type="submit" id="submitButton">Submit</button> 
+		<button type="reset" id="resetButton">Reset</button> <br><br>
+		<button>전송</button>
+		
+		<input type="button" value="일반버튼"> 
+		<input type="submit" value="전송버튼"> 
+		<input type="reset" value="초기화버튼"> <br><br>
+		</form>
+      
+      
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+//id=btn1을 검색 -- 이벤트 핸들러
+$(function(){
+	$('#btn1').on('click',function(){
+		//전체 p태그를 선택 작은따옴표 큰따옴표 상관 음슴
+		$('p').css('font-size', '1.5rem');
+		
+		$('.result p').css('background', 'pink');
+	})
+	
+})
+
+</script>
+
+</head>
+
+
+<body>
+
+<div class="box">
+    </h3>
+    <input type="button" value="확인" id="btn1" />
+    <br /><br />
+
+    <p>사랑은 늘 도망가</p>
+    <div id="result">
+        <p>사랑은 늘 도망가</p>
+    </div>
+
+    <div class="result"></div>
+    
+    <div id="result">
+        <p>사랑은 늘 도망가</p>
+    </div>
+    <div id="result">
+        <p>사랑은 늘 도망가</p>
+    </div>
+    <div id="result">
+        <p>사랑은 늘 도망가</p>
+        
+        <form>
+        <p>사랑은 늘 도망가</p>
+    </form>
+    
+          <form>
+        <p>사랑은 늘 도망가</p>
+    </form>
+          <form>
+        <p>사랑은 늘 도망가</p>
+    </form>
+    </div>
+    
+</div>
+</body>
+</html>

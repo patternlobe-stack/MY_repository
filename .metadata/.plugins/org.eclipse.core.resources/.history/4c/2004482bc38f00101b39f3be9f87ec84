@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+const pclick = ()=>{
+	alert("hello");
+}
+
+const proc1 =() =>{
+	
+	//p태그를 새롭게 생성하기
+	//ptag = $("<p class='pp' onclick='pclick()'>Hello JQuery</p>)";
+        ptag = $("<p>", { 
+        class: "pp",
+        text: "Hello JQuery", 
+        click: pclick 
+				//	click : function(){	
+					//}
+	});
+
+
+	
+	//result1에 ptag를 추가ㅎ
+	$('#result1').append(ptag);
+}
+
+imgs=["gsjLogo2.png","coffee1.jpg","Tulips.jpg","국화2.jpg","국화3.jpg","국화4.jpg"]
+
+const proc2 =() =>{
+	
+	rand = parseInt(Math.random()*imgs.length);
+	
+	img = $("<img>",{
+		
+			class:'cc',
+			src : ' ../images/' + imgs[rand],
+			alt : imgs[rand],
+			click: function(){
+				// this.style.border="2px solid blue";
+				$(this).css('border', '2px solid red')
+
+			}//click
+	})//img
+	
+	$('#result2').append(img);
+}//proc2
+
+
+</script>
+<style>
+img{
+width:100px;
+height:100px;
+}</style>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+      
+<div class="box">
+      <h3>
+      </h3>
+      <input type="button" value="이미지생성" onclick="proc2()" />
+      <br /><br />
+
+      <div id="result2"></div>
+</div>
+</body>
+</html>

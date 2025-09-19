@@ -1,0 +1,40 @@
+<%@page import="kr.or.ddit.member.vo.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:choose>
+  <c:when test="${not empty sessionScope.loginok}">
+    {
+      "flag": "ok"
+    }
+  </c:when>
+  <c:otherwise>
+    {
+      "flag": "fail"
+    }
+  </c:otherwise>
+</c:choose>
+
+
+
+<%-- <%
+
+ MemberVO vo=(MemberVO)session. getAttribute("loginok");
+
+
+if(vo != null){
+%>	
+	
+	{
+		"flag"	: "ok"
+	}
+	
+<%   }else{ %>	
+		{
+		"flag"	: "fail""
+	}
+	
+<%	
+}
+%> --%>

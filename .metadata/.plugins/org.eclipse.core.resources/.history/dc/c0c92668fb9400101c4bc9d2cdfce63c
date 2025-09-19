@@ -1,0 +1,91 @@
+package kr.or.ddit.board.service;
+
+import java.util.List;
+
+import kr.or.ddit.board.dao.BoardDaoImpl;
+import kr.or.ddit.board.dao.IBoardDao;
+import kr.or.ddit.board.vo.BoardVO;
+import kr.or.ddit.board.vo.ReplyVO;
+
+import kr.or.ddit.util.PageInfo;
+
+public class BoardServiceImpl implements IBoardService{
+	
+	private IBoardDao dao; 
+	
+	private BoardServiceImpl() {
+		dao = BoardDaoImpl.getDao();
+		
+	}
+	private static IBoardService service; // 자신의 객체생성
+	
+	public static IBoardService getService() {
+	if(service == null) service = new BoardServiceImpl();
+	return service; 
+
+	}
+	
+	@Override
+	public List<BoardVO> pageByList(PageInfo pinfo) {
+		// TODO Auto-generated method stub
+		return dao.pageByList(pinfo);
+	}
+
+	@Override
+	public int insertBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteBoard(int num) {
+		// TODO Auto-generated method stub
+		return dao.deleteBoard(num);
+	}
+
+	@Override
+	public int updateBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return dao.updateBoard(vo);
+	}
+
+	@Override
+	public int updateHit(int num) {
+		// TODO Auto-generated method stub
+		return dao.updateHit(num);
+	}
+
+	@Override
+	public int insertReply(ReplyVO vo) {
+		// TODO Auto-generated method stub
+		return dao.insertReply(vo);
+	}
+
+	@Override
+	public int deleteReply(int renum) {
+		// TODO Auto-generated method stub
+		return dao.deleteReply(renum);
+	}
+
+	@Override
+	public int updateReply(ReplyVO vo) {
+		// TODO Auto-generated method stub
+		return dao.updateReply(vo);
+	}
+
+	@Override
+	public List<ReplyVO> selectReply(int bonum) {
+		// TODO Auto-generated method stub
+		return dao.selectReply(bonum);
+	}
+
+	@Override
+	public int getListCount(PageInfo pinfo) {
+		// TODO Auto-generated method stub
+		return dao.getListCount(pinfo);
+	}
+
+
+
+
+}

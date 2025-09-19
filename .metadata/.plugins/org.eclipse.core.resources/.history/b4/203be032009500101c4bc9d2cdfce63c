@@ -1,0 +1,47 @@
+package kr.or.ddit.board.service;
+
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.board.vo.BoardVO;
+
+import kr.or.ddit.board.vo.ReplyVO;
+import kr.or.ddit.util.PageInfo;
+
+public interface IBoardService {
+
+      // 페이지별 글 리스트 가져오기
+    public List<BoardVO> pageByList(PageInfo pinfo);
+
+	//글쓰기 - 실행된 행의갯수를 리턴 - 
+	public int insertBoard(BoardVO   vo);
+	
+	//글삭제 - 삭제된 글의 갯수를 리턴
+	public int deleteBoard(int num);
+	
+	//글수정 - 수정된 글의 갯수를 리턴
+	public int updateBoard(BoardVO  vo);
+	
+	//조회수 증가 
+	public int updateHit(int num);
+	
+		
+	//댓글쓰기
+	public int insertReply(ReplyVO  vo);
+	
+	//댓글 삭제
+	public int deleteReply(int renum);
+	
+	//댓글 수정
+	public int updateReply(ReplyVO  vo );
+	
+	//댓글 리스트 
+	public List<ReplyVO>  selectReply(int bonum);
+	
+	
+	//전체글 갯수 구하기
+	public int getListCount(PageInfo pinfo);
+
+	
+
+}
