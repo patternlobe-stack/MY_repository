@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/public.css" />
+    <script>
+      const myCar = { make: "bmw", model: "x5", year: 2020 };
+
+      const proc1 = () => {
+        //구조분해
+        const { make, model } = myCar;
+
+        //출련내용
+        let str = "";
+        str += `메이커  : ${make}<br>
+			       모델 : ${model} <br>`;
+
+        //출력
+        document.querySelector("#result1").innerHTML = str;
+      };
+
+      const proc2 = () => {
+        //구조분해
+        const { year } = myCar;
+
+        //출력내용
+        str = `년식 : ${year}`;
+
+        //출력
+        document.querySelector("#result2").innerHTML = str;
+      };
+
+      const proc3 = () => {
+        const { make, ...rest } = myCar;
+        // ...rest 리터럴객체 - 반복 forEach
+        let str = `메이커 : ${make}<br>`;
+
+        for (let rr in rest) {
+          str += `${rr} : ${rest[rr]} <br>`;
+        }
+
+        //출력
+        document.querySelector("#result3").innerHTML = str;
+      };
+
+      const users = [
+        { name: "홀길동", age: 25 },
+        { name: "홍도화 ", age: 30 },
+      ];
+
+      const proc4 = () => {
+        let str = "";
+
+        // users.forEach((user, index) => {
+        //   str += `이름 :  ${user["name"]} <br>
+        // 		나이 : ${user["age"]} <br>`;
+        // });
+
+        //user에 ()생략 가능 ------------
+        // users.forEach((user) => {
+        //   str += `이름 :  ${user["name"]} <br>
+        //  		나이 : ${user["age"]} <br>`;
+        // });
+
+        //구조분해- ()가 꼭 필요
+        users.forEach(({ name, age }, index) => {
+          str += `이름 :  ${name} <br>
+		 		나이 : ${age} <br>`;
+        });
+        document.querySelector("#result4").innerHTML = str;
+      };
+
+      const proc5 = () => {
+        //함수호출
+        printUser(users);
+      };
+
+      const printUser = (peoples) => {
+        let str = "";
+
+        // peoples.forEach((people, idx) => {
+        //   str += `이름 :  ${people["name"]} <br>
+        // 	나이 : ${people["age"]} <br>`;
+        // });
+
+        //구조분해
+        peoples.forEach(({ name, age }, idx) => {
+          str += `이름 :  ${name} <br>
+       	 	나이 : ${age} <br>`;
+        });
+
+        document.querySelector("#result5").innerHTML = str;
+      };
+    </script>
+  </head>
+  <body>
+    <pre>
+<h2>구조 분해 할당 </h2>
+배열이나 객체를  분해해서 각각의 값을 개별적인  변수에 할당하는 표현식 
+</pre>
+    <div class="box">
+      <input type="button" value="일부만 make, model" onclick="proc1()" />
+      <input type="button" value="일부만 year" onclick="proc2()" />
+      <input type="button" value="일부만 ...rest" onclick="proc3()" />
+      <input type="button" value="객체 배열" onclick="proc4()" />
+      <input type="button" value="함수의매개변수" onclick="proc5()" />
+    </div>
+
+    <br /><br />
+    <div class="box">
+      <div id="result1"></div>
+      <div id="result2"></div>
+      <div id="result3"></div>
+      <div id="result4"></div>
+      <div id="result5"></div>
+    </div>
+  </body>
+</html>

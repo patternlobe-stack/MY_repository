@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      let str = "";
+
+      const maxNum = (...nums) => {
+        let vmax = nums[0];
+
+        nums.forEach(function (num, index) {
+          if (vmax < num) vmax = num;
+        });
+
+        //출력내용
+        //str += nums + "최대값 : " + vmax + "<br>";
+        str += `${nums} 최대값 : ${vmax} <br>`;
+
+        document.querySelector("#result1").innerHTML = str;
+      };
+      // function maxNum(...nums){
+      // }
+      const proc1 = () => {
+        //maxNum 함수호출-최대값 구하기
+        maxNum(23, 45, 12, 67);
+        maxNum(89, 34, 12);
+        maxNum(45, 12);
+      };
+
+      const filterByKeyword = (keyword, ...items) => {
+        const arr = [];
+
+        //includes :배열메소드 , 포함여부 판단 true/false리턴
+        //push : 배열메소드 , 배열에 값을 추가
+        //...items들의 요소중에서 keyword를 포함하고 있는 단어를 찾는다
+        items.forEach((item, index) => {
+          if (item.includes(keyword)) arr.push(item);
+        });
+        return arr;
+      };
+
+      const proc2 = () => {
+        result = filterByKeyword(
+          "java",
+          "javaScript기초",
+          "java기초",
+          "html과 css",
+          "js프로젝트"
+        );
+
+        document.querySelector("#result2").innerHTML = result + "<br>";
+
+        result = filterByKeyword(
+          "html",
+          "javaScript기초",
+          "java기초",
+          "html과 css",
+          "js프로젝트",
+          "html프로젝트"
+        );
+        document.querySelector("#result2").innerHTML += result + "<br>";
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      함수의 정의시 매개변수로 ...args 로 선언 <br />
+      호출시에 정해져 있지않은 수의 흩어져 있는 값들을 args의 배열로 모아서
+      처리한다
+      <br />
+      <br />
+      <input type="button" value="확인" onclick="proc1()" />
+      <br />
+      <br />
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      함수의 정의시 매개변수로 ...args 로 선언 <br />
+      호출시에 정해져 있지않은 수의 흩어져 있는 값들을 args의 배열로 모아서
+      처리한다
+      <br />
+      <br />
+      <input type="button" value="확인" onclick="proc2()" />
+      <br />
+      <br />
+      <div id="result2"></div>
+    </div>
+  </body>
+</html>

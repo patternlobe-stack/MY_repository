@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.sticky_box{
+   position : sticky;
+   top : 10px;
+   background: red;
+}
+.static_box{
+  position: static;
+  background: green;
+}
+.fixed_box{
+  position: fixed;
+  top : 95px;
+  background: skyblue;
+}
+
+div{
+   width : 50px;
+   height: 50px;
+   background: red;
+   margin: 10px;
+   
+   display: inline-block;
+}
+</style>
+</head>
+<body>
+<pre>
+브라우저가 처음 랜더링 되었을때 aticky요소는 문서 흐름에 따랄 이동 하고 배치된다 
+스크롤이 ㅂ지정된 위치에 도덜할때까지 일반작인 흐롬대로 이동한다 
+스크롤 좌표가 지정된 위치에 도달하면  sticky 요소는 고정된다 
+
+</pre>
+<br><br>
+스크럴을 내려보세요
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<div class="sticky_box">sticky</div>
+<div class="static_box">static</div>
+<div class="fixed_box">fixed</div>
+<br><br><br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<div class="static_box">static</div>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<div class="static_box">static</div>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+</body>
+</html>

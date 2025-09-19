@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            display: inline-block;
+            width : 80px;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+   <form action="입력속성.jsp" method="post">
+   
+    <label for="id">아이디</label>
+    <input type="text" name="inputId" id="id" value="a001" disabled><br>
+
+    <label for="name">이름</label>
+    <input type="text" name="inputName"  title="홍길동" id="name" autofocus required><br>
+
+    <label for="tel">전화번호</label>
+    <input type="text" name="tel" id="tel" placeholder="010-1234-5678" required><br>
+
+    <input type="submit">
+    <input type="reset">
+
+   </form> 
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      const proc1 = () => {
+        //입력 - 결과 dan은 String값이다
+        dan = prompt("구구단수를 입력");
+
+        //비교 및 계산
+        let str = "";
+        for (let i = 1; i < 10; i++) {
+          // str += dan + " * " + i + " = " + (dan*i) + "<br>";
+          str += `${dan} * ${i} = ${dan * i} <br>`;
+        }
+
+        //출력
+        document.querySelector("#result1").innerHTML = str;
+      };
+
+      const proc2 = () => {
+        while (true) {
+          dan = prompt("구구단수 입력");
+
+          //비교 및 계산
+          let str = "*** " + dan + "단 ***<br>";
+          for (let i = 1; i < 10; i++) {
+            // str += dan + " * " + i + " = " + (dan*i) + "<br>";
+            str += `${dan} * ${i} = ${dan * i} <br>`;
+          }
+
+          //출력
+          document.querySelector("#result2").innerHTML += str;
+
+          //계속 여부 판단 - cont결과값은 true/false를 리턴
+          cont = confirm("계속할래???");
+
+          //cont비교
+          if (!cont) break;
+        }
+
+        //break 후 출력이보인다
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      버튼 클릭시 prompt를 이용하여 구구단수를 입력하여 해당 구구단을 출력<br />
+      <br />
+      <input type="button" value="확인" onclick="proc1()" />
+      <br />
+      <br />
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      버튼 클릭시 prompt를 이용하여 구구단수를 입력하여 해당 구구단을 출력<br />
+      계속할지 말지 여부를 물어서 수행한다 -confirm()를 이용
+      <br />
+      <input type="button" value="확인" onclick="proc2()" />
+      <br />
+      <br />
+      <div id="result2"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+
+<script>
+
+const logPromise = (url, data) =>{
+	
+	return  new Promise(function(resolve, reject) { 
+		
+		xhr = new XMLHttpRequest();
+		
+		xhr.open("post", url, true);
+		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+		xhr.send(data);
+		
+		xhr.onload = function(){
+			resolve(xhr.responseText)
+		}
+		
+		xhr.onerror = function(){
+			reject(xhr.status);
+		}
+		
+	});
+}
+
+//const sel = (ele) =>{
+//	return document.querySelector(ele)
+//}
+
+const _$ = (ele) =>{
+	return document.querySelector(ele)
+}
+
+
+
+const proc1 = () =>{ //promise!
+	//입력한 id와 pass값 가져오기 
+	vid = _$("#id").value;
+	vpass = _$("#pass").value;
+	
+	//data = "id=" + vid + "&pass=" + vpass;
+	data = `id=${vid}&pass=${vpass}`;
+	
+	logPromise("http://localhost/webpro/LoginMember.do", data)
+	.then(res =>{
+		//JSON형식의 문자열데이타 
+		console.log(res);
+		
+		
+		//JSON형식의 문자열데이타 자바스크립트 객체로 역직렬화
+		return JSON.parse(res);
+	})
+	.then(res=> {
+		//document.querySelector("#result1").innerHTML = res.flag
+		
+		//_$("#result1").innerHTML = res.flag;
+		
+		console.log(res);
+		
+		let str = "";
+		str += `${res['mem_id']}님 환영합니당^^`
+		
+		_$("#result1").innerHTML = str;
+		_$("#result1").style.color = "red";
+	})
+	.catch(err=>console.log(err))
+}
+
+//------------------------------------------------------------
+const proc2 = () =>{ //patch
+	//입력한 값 가져오기..
+	vid = _$("#id").value;
+	vpass = _$("#pass").value;
+	
+	fetch("http://localhost/webpro/LoginMember.do",{
+		method : "post",
+		//일반문자열 방식-------------------
+		headers : {"content-type":"application/x-www-form-urlencoded"},
+		body : `id=${vid}&pass=${vpass}`
+	
+	
+	//직렬화 전송- 서버에서 bufferedreader로 일거야 함~!
+		//headers : {"content-type":"application/json;charset=utf-8"},
+		//body : JSON.stringify({id : vid , pass : vpass}) // ;안됨 직렬화로 바꿈
+	
+	})
+	.then(res =>{
+		console.log(res);
+		//실제 데이타가 아니라 response객체
+		//자바스크립트 객체로 역직렬화
+		if(res.ok) return res.json();
+		
+	})
+		.then(res =>{
+		console.log(res);
+
+		let str = "";
+		str += `${res['mem_id']}님 환영합니당^^`
+
+		_$("#result1").innerHTML = str;
+		_$("#result1").style.color = "red";
+	})
+	.catch(err=>console.log(err))
+
+} //click
+
+const proc3 = async () => {  //async
+	//입력한 데이터 가져오기
+	vid = _$("#id").value;
+	vpass = _$("#pass").value;
+	
+	console.log(vid, vpass);
+	
+	try {
+		res= await fetch("http://localhost/webpro/LoginMember.do",{
+			method : "post",
+			headers : {"content-type":"application/x-www-form-urlencoded"},
+			body : `id=${vid}&pass=${vpass}`
+		});
+		
+		
+		if(res.ok) data = await res.json();
+
+		
+		let str = "";
+		str += `${data['mem_id']}님 환영합니당^^`
+
+		_$("#result1").innerHTML = str;
+		_$("#result1").style.color = "red";
+			
+	} catch (e) {
+
+	}
+	//res는 실제 데이터가 아니고 레스폰스 객체다.
+	//역직렬화 
+	
+}
+
+
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <form>
+         <input type="text" id="id" placeholder="아이디입력"><br>
+         <input type="password" id="pass" placeholder="비밀번호입력"><br>
+         
+      </form>
+      <input type="button" value="promise" onclick="proc1()" />
+      <input type="button" value="fetch" onclick="proc2()" />
+      <input type="button" value="async" onclick="proc3()" />
+      <br /><br />
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>

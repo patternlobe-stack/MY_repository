@@ -1,0 +1,103 @@
+escmascript version : 표준 버전 es1, es2,~~~~ es6(2015)
+
+세자리마다 , 출력 
+resultValue.toLocaleString()
+123,456,234
+
+소수이하 자릿수 
+value.toFixed(3)
+parseInt(value)
+
+es6 - let const 
+es6 -querySelector, querySelectorAll
+
+--------------------
+변수선언 - 자료형을 사용하지 않는다
+--------------------
+실행시 지룔형이 자동으로 결정 
+let  a = 1 ;   let a;    a= 1;  a="korea"
+var  a = 1;    var a;    a="korea";  a=100;
+
+const a = 1;   변경하지 않는 값을 대입   a=2 ; 값을 변경대입할 수 없다 
+
+--------------------
+html요소를 검색 접근 
+-----------------------
+document.getElementById('pass')
+document.querySelector('#pass')
+
+
+let list = document.getElementsByClassName('pass');  HTMLCollection를 리턴 
+let list = document.querySelectorAll('.pass')   ; NodeList를 리턴 
+
+let element = document.getElementsByTagName('input');  HTMLCollection를 리턴 
+let element = document.querySelectorAll('input'); NodeList를 리턴
+
+-------------------------------------------------
+접근요소에서 값 가져오기(get) / 값 설정(대입)하기(set)
+-------------------------------------------
+value   :    input , select-option, textarea
+
+innerHTML  : span, a, div, h1, h2 b, em, strong, i, td
+innerText/textContent : span, a, div, h1, h2 b, em, strong, i, td
+
+<span> <b>korea</b></span>
+let vspan = document.querySelector('span');
+vspan.innerHTML  : <b>korea</b>
+vspan.innerText  : korea
+
+vspan.innerText = "대한민국"
+vspan.innerHTML = "<em>대덕인제개발원</em>"
+
+
+---------
+색상 설정 
+------------
+이름 : red, blue, green
+#faff12
+rgb(100%, 98%, 25%)
+rgb(255, 124, 200)
+rgba(100%, 0, 0, 0.5)
+rgba(255, 124, 200, 0.2)
+
+----------
+함수정의
+-------------
+함수선언식
+function colorChange(){
+  return 값;
+}
+
+함수표현식
+const colorChange = function(item){ }
+
+
+
+es6 에서 화살표 함수 
+const colorChange = (item) => { }
+
+
+화살표 함수에서의 this
+ 상위의 this를 사용한다
+ 상위의 함수의 this
+---
+백틱을 이용한 템플릿 리터럴 
+한문장아네 문자와 변수가 연달아 반복적으로 나올때 
+
+``````````````````````````````````````
+`문자와 변수 를 배열 `- 따옴표 와 +기호가 없다 
+${변수}
+
+let str = `첫번째 수  ${su1} <br>`;
+        str += "두번째 수 " + su2 + "<br>";
+        str += "두수의 합 " + sum + "<br>";
+
+
+
+
+
+
+
+
+
+

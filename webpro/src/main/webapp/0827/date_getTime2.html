@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      today = new Date();
+
+      const proc1 = () => {
+        //100일의 millisec 값구하기
+        let milli100 = 100 * 1000 * 60 * 68 * 24;
+
+        //현재날자의 millisec값 구하기
+        let tomilli = today.getTime();
+
+        // 현재날자의 millisec  + 100일의 millisec
+        let times = tomilli + milli100;
+
+        //Date객체로 생성
+        let day100 = new Date(times);
+
+        console.log(day100);
+
+        //출력형식
+        let str = `오늘 : ${today.toLocaleString()}<br>`;
+        str += `100일 후 : ${day100.toLocaleDateString()}`;
+
+        document.querySelector("#result1").innerHTML = str;
+      };
+
+      const proc2 = () => {
+        //id=sel인 요소검색 - 값을 가져오기 - 결과 : 일반 문자열
+        selValue = document.querySelector("#sel").value;
+
+        console.log(selValue);
+
+        //선택한 값으로 Date객체생성
+        selday = new Date(selValue);
+
+        //선택한 값의 Date객체를 이용하여 millisec값 구하기
+        selsec = selday.getTime();
+
+        //현재날짜의 millisec 값 구하기
+        tosec = today.getTime();
+
+        //총milli = 현재 milli - 선택날짜의 milli
+        totsec = tosec - selsec;
+
+        //총milli 경과일수를 구한다
+        day = totsec / 1000 / 60 / 60 / 24;
+
+        //경과일수 비교
+        if (day > 7) {
+          res = "교환불가";
+        } else {
+          res = "교환가능";
+        }
+
+        //출력내용 -
+        let str = `오늘 : ${today.toLocaleDateString()}<br>`;
+        str += `구입날 : ${selday.toLocaleDateString()}<br>`;
+        str += `경과일수 : ${day}<br>`;
+        str += `결과 : ${res}<br>`;
+
+        ///출력
+        document.querySelector("#result2").innerHTML = str;
+      };
+
+      //window.onload = function(){ }
+      document.addEventListener("DOMContentLoaded", function () {
+        //id=spday검색 -오늘날짜를 출력
+        //span태그를 검색
+        sptag = document.querySelector("#spday");
+
+        sptag.innerHTML = `${today.toLocaleDateString()}`;
+      });
+
+      const proc3 = (target) => {
+        //target매개변수는 클릭한 input객체 둘중 하나 를 받은 지역변수
+
+        //input객체의 value값을 얻는다 - 이전/ 다음
+        tvalue = target.value;
+        console.log(tvalue);
+
+        // span태그의 현재 값을 가져온다  - 문자열 spanValue
+        spanValue = sptag.innerHTML;
+
+        //spanValue 를 매개변수로 Date객체로 생성 - spanDay
+        spanDay = new Date(spanValue);
+
+        //spanDay의 millisec구하기 - getTime() - spansec
+        spansec = spanDay.getTime();
+
+        //1일의 millisec 구하기  onesec
+        onesec = 1 * 1000 * 60 * 60 * 24;
+
+        //이전 다음 비교  - 총millisec구하기 - totsec
+        //이전이면 - spansec  -  onesec
+        //다음이면 - spansec  + onesec
+        if (tvalue == "다음") {
+          totsec = spansec + onesec;
+        } else {
+          totsec = spansec - onesec;
+        }
+
+        //totsec를 파라미터로 해서 Date객체를 생성 - nday
+        nday = new Date(totsec);
+
+        //출력
+        //nday를 span태그에 출력  - = nday.toLocaleDateString()
+        sptag.innerHTML = nday.toLocaleDateString();
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <h3>100일후의 날짜 구하기</h3>
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      <h3>
+        구입날짜를 선택 하여 오늘까지 경괴한 날 수를 구한다 <br />
+        7일이상 경과했으면 교환 불가능 아니면 교환 가능 을 출력
+      </h3>
+      <br />
+      <input type="date" id="sel" />
+      <input type="button" value="확인" onclick="proc2()" />
+      <br /><br />
+
+      <div id="result2"></div>
+    </div>
+
+    <div class="box">
+      <h3>이전 , 다음 날짜 출력하기</h3>
+      <input type="button" value="이전" onclick="proc3(this)" />
+      <span id="spday"></span>
+      <input type="button" value="다음" onclick="proc3(this)" />
+      <br /><br />
+
+      <div id="result3"></div>
+    </div>
+  </body>
+</html>

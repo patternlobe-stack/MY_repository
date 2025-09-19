@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        border: 1px dotted green;
+        height: 100px;
+        margin: 20px;
+
+        font-size: 1.4rem;
+      }
+    </style>
+
+    <script>
+      //날짜 객체-Date객체를 생성
+      let today = new Date();
+
+      document.addEventListener("DOMContentLoaded", function () {
+        //div요소 검색 - 츨력
+        let print = document.querySelector("#result1");
+
+        print.innerHTML = today + "<br>";
+        print.innerHTML += today.toLocaleString();
+      });
+    </script>
+  </head>
+  <body>
+    <h2>오늘의 날짜 출력</h2>
+    <div id="result1"></div>
+  </body>
+</html>

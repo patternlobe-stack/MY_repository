@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <style>
+      #container {
+       background : dodgerblue;
+        display: flex;
+        flex-wrap: wrap;
+        height : 300px;
+      }
+      #container div {
+        background: #f1f1f1;
+        width: 100px;
+        margin: 10px;
+        text-align: center;
+        font-size: 30px;
+       
+      }
+
+      label {
+        font-size: 1.5rem;
+      }
+      
+      #container div:nth-child(2n){
+          font-size : 80px;
+      }
+    </style>
+
+
+<script>
+
+//전역변수 선언 
+let font=null;
+	
+function proc1(target){
+	// target : 클릭한 input객체-메뉴(this)를 파라미터로 받은 변수
+
+	//target에 대해서 값을 가져와서 부모요소의 style를 변경 한다 
+	 fcont.style.alignItems = target.value;
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+	
+	//부모요소 검색 
+    fcont = document.querySelector('#container');
+    console.log(fcont);
+  	
+})
+
+
+//메뉴요소에 대한 값으로 부모요소의 배열(배치)방식을 변경 -style변경 
+</script>
+
+</head>
+<body>
+
+
+  <h3>flex-alignItems(세로정렬)</h3>
+    <h3>메뉴선택</h3>
+
+    <form name="ff">
+      <label>
+        <input type="radio"  onclick="proc1(this)" name="fdType" value="flex-start"  />flex-start
+      </label>
+
+      <label> <input type="radio"  onclick="proc1(this)" name="fdType" value="flex-end" />flex-end </label>
+
+      <label>
+        <input type="radio"  onclick="proc1(this)" name="fdType" value="center" />center
+      </label>
+      
+      <label>
+        <input type="radio"   onclick="proc1(this)" name="fdType" value="stretch" checked />stretch
+      </label>
+      
+      
+      <label>
+        <input type="radio"   onclick="proc1(this)" name="fdType" value="baseline" />baseline
+      </label>
+    </form>
+
+    <br />
+    <div id="container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+     </div>
+    
+    
+</body>
+</html>

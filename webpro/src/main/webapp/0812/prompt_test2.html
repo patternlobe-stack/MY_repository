@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        //button검색 - 이벤트 핸들러 작성
+        let btn = document.querySelector("input[type=button]");
+
+        btn.onclick = function () {
+          //입력한 값 가져오기  - 결과 는 String - number로 변환
+          let first = parseInt(document.getElementById("firstVal").value);
+          let seconde = parseInt(document.querySelector("#secondVal").value);
+
+          let sum = first + seconde;
+
+          //출력요소 검색
+          let out = document.querySelector("#sum");
+          out.value = sum;
+        };
+
+        // btn.addEventListener('click', function(){
+        // })
+      });
+    </script>
+  </head>
+  <body>
+    첫번째 입력 값 : <input id="firstVal" /> <br />
+    두번째 입력 값 : <input id="secondVal" /> <br />
+    합계 : <input id="sum" />
+    <input type="button" value="계산" />
+  </body>
+</html>

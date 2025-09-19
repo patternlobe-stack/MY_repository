@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      const calc = (op) => {
+        //입력한 값 가져오기
+        let xvalue = parseInt(document.querySelector("#x").value);
+        let yvalue = parseInt(document.querySelector("#y").value);
+
+        switch (op) {
+          case "+":
+            res = xvalue + yvalue;
+            break;
+          case "-":
+            res = xvalue - yvalue;
+            break;
+          case "*":
+            res = (xvalue * yvalue).toLocaleString();
+            break;
+          case "/":
+            res = (xvalue / yvalue).toFixed(2);
+            break;
+        }
+
+        //출력
+        document.querySelector("#sum").value = res;
+        document.querySelector("#sp1").innerHTML = xvalue;
+
+        document.querySelector("#sp2").innerHTML = yvalue;
+        document.querySelector("#sp3").innerHTML = res;
+      };
+    </script>
+  </head>
+  <body>
+    <form class="box">
+      첫번째 :<input id="x" /><br />
+      두번째 :<input id="y" /><br />
+      결과 :<input id="sum" /><br />
+      <br /><br />
+      <input type="button" onclick="calc('+')" value="+" />
+      <input type="button" onclick="calc('-')" value="-" />
+      <input type="button" onclick="calc('*')" value="*" />
+      <input type="button" onclick="calc('/')" value="/" /><br />
+
+      <p>첫번째 값 :<span id="sp1"></span></p>
+      <p>두번째 값 :<span id="sp2"></span></p>
+      <p>결과 :<span id="sp3"></span></p>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      function Rect(garo, sero) {
+        this.garo = garo;
+        this.sero = sero;
+
+        this.area = function () {
+          return this.garo * this.sero;
+        };
+      }
+
+      const proc1 = () => {
+        const rect1 = new Rect(3, 4);
+
+        //circum메소드를 추가 한다
+        rect1.circum = function () {
+          return (parseInt(rect1.garo) + parseInt(rect1.sero)) * 2;
+        };
+
+        console.log("rect1---", rect1);
+
+        //출력르 위한 함수 호출
+        printRect(rect1, "#result1");
+      };
+
+      const printRect = (obj, out) => {
+        //출력내용
+        let str = "";
+
+        str += `가로 : ${obj["garo"]} <br>
+                  세로 : ${obj["sero"]}<br>
+                  면적 : ${obj["area"]()} <br>
+                  둘레 : ${obj["circum"]()}<br>`;
+
+        document.querySelector(out).innerHTML = str;
+      };
+
+      const proc2 = () => {
+        //세로 입력
+        x = prompt("가로 입려");
+
+        //세로 입력
+        y = prompt("세로입력");
+
+        //Rect객체 생성
+        const rect2 = new Rect(x, y);
+
+        //circum메소드를 추가 한다
+        rect2.circum = function () {
+          return (parseInt(rect2.garo) + parseInt(rect2.sero)) * 2;
+        };
+        console.log("rect2--", rect2);
+
+        //출력 함수 호출
+        printRect(rect2, "#result2");
+      };
+    </script>
+  </head>
+  <body>
+    생성자 함수에 없는 메소드(circum())를 각 각 의 객체에 추가한다
+    <div class="box">
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      <input type="button" value="확인" onclick="proc2()" />
+      <br /><br />
+      <div id="result2"></div>
+    </div>
+  </body>
+</html>
