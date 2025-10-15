@@ -1,8 +1,0 @@
-/**
- * 
- */
-
-//최초 submit실행
-const fn_listPageServer = (event) =>{
-	
-}
