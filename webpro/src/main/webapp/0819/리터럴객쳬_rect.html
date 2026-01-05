@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+    <script>
+      const rect = {
+        garo: 5,
+        sero: 7,
+        //   area : function(){
+        //     //넓이
+        //     return  this.garo * this.sero;
+        //   },
+        //   circum : function(){
+        //     //둘레
+        //     return (this.garo + this.sero) * 2;
+        //   }
+        area() {
+          return this.garo * this.sero;
+        },
+        circum() {
+          return (parseInt(this.garo) + parseInt(this.sero)) * 2;
+        },
+      };
+
+      const proc1 = () => {
+        //rect정보를 출력 하기 위해서 함수 호출
+        printRect("#result1");
+      };
+
+      const printRect = (out) => {
+        //실제로 정보를 출ㄹ력
+        let str = "";
+
+        // str += `가로 : ${rect.garo} <br>
+        //       세로 : ${rect.sero}<br>
+        //       면적 : ${rect.area()} <br>
+        //       둘레 : ${rect.circum()}<br>`;
+
+        str += `가로 : ${rect["garo"]} <br>
+             세로 : ${rect["sero"]}<br>
+              면적 : ${rect["area"]()}<br>
+             둘레 : ${rect["circum"]()}<br>`;
+        document.querySelector(out).innerHTML = str;
+      };
+
+      const proc2 = () => {
+        //입력
+        // rect.garo = prompt("가로 입력");
+        // rect.sero = prompt("세로 입력");
+
+        rect["garo"] = prompt("가로입력");
+        rect["sero"] = prompt("세로입력");
+
+        //rect정보 출력하기 위해서 함수 호출
+        printRect("#result2");
+      };
+    </script></head
+  >>
+
+  <body>
+    <div class="box">
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      <input type="button" value="확인" onclick="proc2()" />
+      <br /><br />
+      <div id="result2"></div>
+    </div>
+  </body>
+</html>

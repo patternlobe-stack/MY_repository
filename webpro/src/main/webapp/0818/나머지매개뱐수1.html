@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      const sum = (...args) => {
+        // ...args는 배열이다
+        // 정해져 있지 않능 수 들을 하나로 모아서 대입한다
+        //배열순회 반복문을 이용해서 값을 처리한다
+
+        //let hap = 0;
+        //for(i=0; i<args.length ; i++){
+        //     hap += args[i]
+        // }
+
+        let hap = 0;
+        args.forEach((arg, index) => {
+          hap += arg;
+        });
+
+        //출력내용
+        let str = "";
+        str += args + "<br>";
+        str += "hap= " + hap + "<br>";
+
+        //출력장소 검색 - id=result1
+        document.querySelector("#result1").innerHTML += str;
+      };
+
+      const proc1 = () => {
+        sum(1, 2);
+        sum(23, 45, 67);
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      함수의 정의시 매개변수로 ...args 로 선언 <br />
+      호출시에 정해져 있지않은 수의 흩어져 있는 값들을 args의 배열로 모아서
+      처리한다
+      <br />
+      <br />
+      <input type="button" value="확인" onclick="proc1()" />
+      <br />
+      <br />
+      <div id="result1"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+
+
+ <style>
+      .result {
+        display: flex;
+      }
+      .res {
+        flex: 25%;
+      }
+    </style>
+    
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+	
+	 vtext = document.querySelector('#text');
+	 varr = document.querySelector('#arr');
+	 vobj = document.querySelector('#obj');
+	 vobar = document.querySelector('#objArr')
+	 
+	 
+	 vtext.onclick = function(){
+			
+		 fetch('text.jsp')
+		 .then(res=>{
+			 
+			 //res는 Response객체
+			 if(res.ok)  return res.text();
+		 })
+		 .then(data =>{
+			 //'data = 홍길동/홍매화/홍도화/개나리/진달래/봉숭아/무궁화';
+			 
+			 //출력모양 출력
+			//구분자 /를 기준으로 문자열을 분리 해서 배열로 생성
+	       	  arr =  data.split("/");
+	       	  code = "<ul>";
+	       	  
+	       	  arr.forEach( name =>{
+	       		  code += `<li>${name}</li>`;
+	       	  })
+	       	  
+	       	  code += "</ul>";
+	       	        	  
+	       	  document.querySelector('#result1').innerHTML = code;
+			 
+		 })
+		 .catch( err =>{
+			 console.log(err);
+		 })
+		 
+	 }//onclick
+	 
+	 
+	 varr.onclick = function(){
+		 
+		 fetch('arr.jsp')
+		 .then(res=>{
+			 //역직렬화
+			 return res.json();
+		 })
+		 .then(data =>{
+			 //출력형식 출력 
+			 
+			 code = "<ol>"
+			 data.forEach( name =>{
+    	    	  
+    	    	  code += `<li>${name}</li>`
+    	      })
+    	      code += "</ol>"
+    	      
+    	      document.querySelector("#result2").innerHTML = code;
+		 })
+		 .catch(err => console.log(err))
+	 }//click
+	 
+	 vobj.onclick = function(){
+		 
+		 fetch("obj.jsp")
+		 .then( res => res.json())
+		 .then( ({name, addr, tel}) =>{
+			
+			 //출력모양 출력 
+			 let code = ""
+       		  code += `이름 :${name} <br>`
+       		  code += `주소 : ${addr} <br>`
+       		  code += `전화번호 : ${tel}<br>`
+        		  
+        	  document.querySelector('#result3').innerHTML = code;
+			 
+		 })
+		 .catch(err => console.log(err))
+		 
+	 }//click
+	 
+	 vobar.onclick = function(){
+		 
+		 fetch("obj_arr.jsp")
+		 .then(res=> res.json())
+		 .then(datas =>{
+			 
+			 code = "";
+			  datas.forEach( (data, index) =>{
+				 code += `<br>${index+1}번째 데이타<br>`
+				 code += `이름 :${data['name']} <br>`
+			   	 code += `주소 : ${data['addr']} <br>`
+			   	 code += `전화번호 : ${ data['tel']}<br>`
+					
+			  })
+			
+ 			document.querySelector('#result4').innerHTML = code;
+			 
+		 })
+ 		.catch(err => console.log(err))
+	 } //click
+	 
+})//DOM
+
+
+ 
+</script>
+
+</head>
+<body>
+
+<div class="box">
+      <h3></h3>
+      <input type="button" value="text" id="text" />
+      <input type="button" value="배열" id="arr" />
+      <input type="button" value="object" id="obj" />
+      <input type="button" value="obj_배열" id="objArr" />
+      <br /><br />
+
+      <div class="result">
+        <div id="result1" class="res"></div>
+        <div id="result2" class="res"></div>
+        <div id="result3" class="res"></div>
+        <div id="result4" class="res"></div>
+      </div>
+    </div>
+
+
+
+</body>
+</html>

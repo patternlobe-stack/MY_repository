@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+function getInfo(){
+	
+	//html요소를 검색 접근 - id와 비밀번호 검색 
+	let vid = document.querySelector('#id');
+    let vpass = document.querySelector('#pass');
+
+    //검색요소에서 입력된 값을 가져온다 - value
+    let idvalue = vid.value;
+    let passvalue = vpass.value;
+
+    console.log(idvalue, passvalue);
+
+	
+}
+</script>
+</head>
+<body>
+    <form action="form1.jsp" method="post">
+
+       아이디  <input type="text" name="id"  id="id" value="a001"><br>
+       비밀번호<input type="password" name="pass"  id="pass" value="12345678"><br>
+       
+       <br>
+       <input type="button" value="확인" onclick="getInfo()">
+       <button type="button" onclick="getInfo()">확인</button>
+    </form>
+</body>
+</html>
+
+
+

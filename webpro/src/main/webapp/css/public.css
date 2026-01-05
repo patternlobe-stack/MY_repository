@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+pre {
+  border: 5px inset red;
+  margin: 20px;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+div {
+  border: 2px dotted green;
+  padding: 10px;
+  margin: 5px;
+  font-size: 1.2rem;
+}
+
+.box {
+  border: 2px solid blue;
+  margin: 3px;
+  padding: 10px;
+}
+.box input[type="button"],
+.box input[type="submit"] {
+  background: blue;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 50px;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #container {
+       background : dodgerblue;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      #container div {
+        background: #f1f1f1;
+        width: 100px;
+        margin: 10px;
+        text-align: center;
+        font-size: 1.3rem;
+        line-height: 100px;
+      }
+
+      label {
+        font-size: 1.5rem;
+      }
+    </style>
+
+    <script>
+    /*   //메뉴요소를 검색
+      let menus = document.querySelectorAll("input[type=radio]");
+      console.log(menus);
+      console.log(menus.length)
+
+      //부모요소를 검색
+      let fcont = document.getElementById("container");
+      fcont = document.querySelector("#container"); */
+    </script>
+  </head>
+  <body>
+    <h3>flex-wrap</h3>
+    <h3>메뉴선택</h3>
+
+    <form name="ff">
+      <label>
+        <input type="radio" name="fdType" value="wrap" checked />wrap
+      </label>
+
+      <label> <input type="radio" name="fdType" value="nowrap" />nowrap </label>
+
+      <label>
+        <input type="radio" name="fdType" value="wrap-reverse" />wrap-reverse
+      </label>
+    </form>
+
+    <br />
+    <div id="container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div>10</div>
+    </div>
+
+    <script>
+    //부모요소를 검색
+    //let fcont = document.getElementById("container");
+    let fcont = document.querySelector("#container");
+    
+   /*  //메뉴요소를 검색
+    let menus = document.querySelectorAll("input[type=radio]");
+   console.log(menus);  // NodeList리턴  /
+   
+   menus.forEach(function(menu){
+	   
+	   menu.addEventListener('change', function(){
+		   fcont.style.flexWrap = menu.value;
+	   })
+   }) */
+   
+    //메뉴요소 검색
+    let menus = document.getElementsByTagName('input');
+    //HTMLCollection리턴
+    console.log(menus);
+    for(let i=0; i<menus.length; i++){
+    	//메뉴요소에 대한 이벤트 
+    	menus[i].addEventListener('change', function(){
+    		fcont.style.flexWrap = menus[i].value;
+    	})
+    } 
+    
+
+   
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

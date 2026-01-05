@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+      body *{
+        border: 1px solid gray;
+        border-radius: 10px;
+        box-sizing: border-box; 
+        margin: 1px;
+        padding: 2px;
+      }
+      header,
+      footer {
+        background: plum;
+        width: 100%;
+        height: 80px;
+      }
+      #left,
+      #right {
+        background: yellowgreen;
+        width: 29%;
+        height: 500px;
+      }
+      #left {
+        float: left;
+      }
+      #right {
+        float: right;
+      }
+      section {
+        background: yellow;
+        height: 500px;
+        width: 40%;
+        float: left;
+      }
+      footer {
+        clear: both;
+      }
+    </style>
+    
+</head>
+<body>
+	<header></header>
+	<main>
+	    <aside id="left"></aside>
+	    <section>
+	       <h2>베스트셀러</h2>
+	    </section>
+	    
+	    <aside id="right"></aside>
+    </main>
+    <footer></footer>
+</body>
+</html>

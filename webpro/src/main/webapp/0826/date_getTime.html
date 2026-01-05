@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      today = new Date();
+
+      const proc1 = () => {
+        //태어난 날
+        myday = new Date("1999.1.12");
+
+        //getTime()를 이용하여 millisec값을 얻는다
+        totime = today.getTime();
+        mytime = myday.getTime();
+        console.log(totime, mytime);
+
+        times = totime - mytime;
+        console.log(times);
+
+        res = times / 1000 / 60 / 60 / 24;
+
+        let str = `현재 : ${today.toLocaleString()}<br>`;
+        str += `태어난 날 : ${myday.toLocaleString()}<br>`;
+        str += `지금까지 ${res.toFixed(2)}일 동안 살고 있습니다`;
+
+        document.querySelector("#result1").innerHTML = str;
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <h3>태어난 날로부터 현재까지 경과한 날수(년수 시간수 초)</h3>
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      <h3></h3>
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div{
+  border : 10px dotted black;
+  margin : 30px 10px;
+  padding : 20px;
+  height : 100px;
+  color : white;
+  
+  /* 이미지도  color도 적용  이미지 적용시 repeat일경우도  적용됨*/
+   background-image: url(../images/flower-1.jpg);  
+   background-color : green;
+   background-size: 100px;   
+    background-repeat:repeat;  
+     
+    /*  //repeat -위아래 border  좌우 border 둘다 적용됨.
+    repeat-x  - 좌우 border적용 , 위아래 border적용안됨.
+    repeat-y - 위아래 border 적용 , 좌우 border 적용 안됨. 
+    no-reapeat - border적용 안됨.  */
+  
+  /*  background-color: lightblue;    */
+  
+ /*  /background-color 와 background-image를 동시에 주면 image가 표시되지 않는 부분만 color이 보임 */
+   
+}
+#d1{
+ background-clip: border-box;  
+ /* 이미지 일경우에만  border-box에서   다음과 같이 적용됨
+  repeat-x : 좌우 border만 
+  repeat-y : 위아래 border만
+  repeat  : 위아래, 좌우 border 둘다적용  */
+  /*  background-color: lightblue; 실행시 변화 없슴  */
+  
+}
+#d2{
+ background-clip: content-box;/* no-repeat시 범위가  작음  , 이미지 크기도 작음*/
+}
+#d3{
+ background-clip: padding-box;
+}
+
+</style>
+</head>
+<body>
+<h2>border-box</h2>
+<div id="d1">
+ <p>무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다</p>
+</div>
+
+<h2>content-box</h2>
+<div id="d2">
+ <p>무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다</p>
+ 
+</div>
+<h2>padding-box</h2>
+<div id="d3">
+ <p>무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다
+ 무궁화 꽃이 피었습니다무궁화 꽃이 피었습니다</p>
+</div>
+
+
+</body>
+</html>

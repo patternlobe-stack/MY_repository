@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+
+<script>
+const getData = (url,data, header) =>{
+
+    return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+
+          //요청-응답
+          xhr.open('post', url, true);
+          xhr.setRequestHeader(
+                  "content-type", header
+           );
+          
+          xhr.send(data);
+          xhr.onload = () =>{
+          	//콜백함수가 곧바로 수행되지 않는다 - 태스크큐(마이크로테스크큐)에 저장되었다 
+          	//콜스택이 비어지면 호출해서 실행 한다 
+          	resolve(xhr.responseText)
+          	
+          	
+          }
+          xhr.onerror = function(){
+                reject(xhr.statusText)
+          }
+    })//promise
+}//getData
+
+const proc2 = () =>{
+	//입력한 데이타 가져오기 
+	vid = document.querySelector("#sid").value;
+	vpass = document.querySelector("#spass").value;
+	
+	//javascript객체를 { id :"a001", pass :"1234567"}json형식의{ "id" :"a001", "pass" :"1234567" } 문자열로 직렬화 
+	data = JSON.stringify({ id : vid , pass : vpass})
+	header = "application/json;charset=utf-8"
+	
+	getData("serial.jsp", data, header)
+	.then(res=>{
+		//역직렬화 - json형식으 문자열데이타를 jsvascript로 객체로 변환 
+		 return JSON.parse(res);
+	})
+	.then(data =>{
+		
+		//역직렬화 데이타 res를 data변수로 바는다
+		
+		//출력모양 만들어서 출력 
+		
+		let code =`이름: ${data['name']}<br>`;
+		code += `주소 : ${data['addr']}<br>`;
+		code += `전화번호 : ${data['tel']}<br>`;
+		
+		document.querySelector('#result2').innerHTML = code;
+		
+	})
+	.catch( err=> console.log(err))
+}
+
+const proc1 = () =>{
+	
+	//입력한 데이타 가져오기 
+	vid = document.querySelector("#id").value;
+	vpass = document.querySelector("#pass").value;
+	
+	data = "id=" + vid + "&pass=" + vpass; //일반문자열 
+	header = "application/x-www-form-urlencoded";
+	
+	getData("postProc.jsp", data, header)
+	.then(res=>{
+		//text기반의 문자열데이타 - script객체로 변환- 역직렬화ㅣ
+		return JSON.parse(res);
+	})
+	.then(data =>{
+		//data : script객체
+		
+		let code =`이름: ${data['name']}<br>`;
+		code += `주소 : ${data['addr']}<br>`;
+		code += `전화번호 : ${data['tel']}<br>`;
+		
+		document.querySelector('#result1').innerHTML = code;
+ 	})
+	.catch(err =>{
+		console.log(err)
+	})
+}
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      일반문자열데이타를 서버로 전송 -"id=" + vid + "&pass=" + vpass <br>
+      서버에서 읽기: request.getParameter("id");
+      전송시 content-type : "application/x-www-form-urlencoded"
+      </h3>
+      <form>
+        아이디<input type="text" name="id" id="id"><br>
+        비밀번호<input type="password" name="pass" id="pass" ><br>
+      </form>
+      
+      <input type="button" value="params전송" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+</div>
+
+
+<div class="box">
+      <h3>
+      직렬화 전송 - javascript객체를 json형식의 문자열로 전송<br>
+      서버에서 읽기 - BufferedReader를 이용해서 읽기<br>
+      읽은 데이타를 자바객체로 변환 - 역직렬화 <br>
+      자바객체 를 이용해서 db처리 - 결과값 받기 <br>
+      전송시 content-type :application/json;charset=utf-8 <br>
+      </h3>
+      <form>
+        아이디<input type="text" name="id" id="sid"><br>
+        비밀번호<input type="password" name="pass" id="spass" ><br>
+      </form>
+      
+      <input type="button" value="직렬화전송" onclick="proc2()" />
+      <br /><br />
+
+      <div id="result2"></div>
+</div>
+
+</body>
+</html>
+
+

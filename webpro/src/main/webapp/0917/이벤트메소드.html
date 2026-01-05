@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+$(() => {
+    let count = 0;
+    
+    // 버튼1 클릭 시 새로운 버튼 생성
+    $('#btn1').on('click', function() {
+        count++;
+        
+        // 새로운 버튼 생성
+        let nbtn = $(`<input type="button" class="btn" value="새로운버튼${count}">`);
+        
+        // 생성한 버튼을 #result1 영역에 추가
+        $(nbtn).appendTo($('#result1'));
+    });
+
+    // 해제 버튼 클릭 시 이벤트 제거
+    $(document).on('click', '#stop', function() {
+        $('#btn1').off('click');  // btn1에 걸려 있는 click 이벤트 해제
+    });
+    
+    //새롭게 생성된 새로운 버튼에 대한 이벤트 핸들러 - 위임방식 
+   $(document).on('click', '.btn', function(){
+		cr=parseInt(Math.random()*256);
+		cg=parseInt(Math.random()*256);
+		cb=parseInt(Math.random()*256);
+   
+		$('#result2').css('background', `rgb(${cr},${cg},${cb} `);
+   })
+   
+   $('#cstop').on('click', function(){
+	  $(document).off('click', '.btn');  
+   })
+    
+});
+
+
+</script>
+
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      추가버튼 클릭시 새로운 버튼을 생성 - div#result1에 추가 <br>
+	새로운 버튼을 클릭하면 아래 div #result1요소의 배경색을 랜덤으로 변경<br>
+	bind 기능과 delegate 기능을 비교실행 <br>
+    bind기능  - 새로운 버튼의 에벤트 핸들러 실행안됨<br>
+    delegate기능 - 새로운 버튼의 에벤트 핸들러 실행 됨 비교 실행<br>
+	해제버튼 - 추가버튼의 이벤트 헨들러를 삭제실행<br>
+      
+      </h3>
+      <input type="button" value="추가" id="btn1" />
+      <input type="button" value="해제"  id="stop"/>
+      <br /><br />
+
+      <div id="result1"></div>
+      <div id="result2"></div>
+      아래 버튼을 클릭하면 배경색을 변경시키는 새로운 버튼에 대한 이벤트 핸들러 를 삭제한다. 
+      이벤트 핸들러 삭제에 대한 이벤트 ㅅㄹㄹ정은 바인드 방식과 위임하는 방식 둘다 가능하다.  
+       <input type="button" value="배경색 해제"  id="cstop"/>
+      
+</div>
+</body>
+</html>

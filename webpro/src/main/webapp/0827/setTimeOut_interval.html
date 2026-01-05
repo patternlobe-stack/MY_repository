@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost/webpro/css/public.css" />
+
+    <script>
+      const proc1 = () => {
+        let res1 = document.querySelector("#result1");
+
+        setTimeout(function () {
+          res1.style.background = "red";
+        }, 500);
+      };
+
+      //두번째 박스의 확인 버튼
+      const proc2 = (btn) => {
+        //btn변수는 현재 클릭한 확인버튼을 this로 전달해서 받은 지역변수
+        //확인버튼을 안보이도록 또는 비활성화
+        //btn.style.display = "none";
+        btn.setAttribute("disabled", "disabled");
+        btn.style.background = "black";
+
+        //btn지역변수를 전역변수로 변경  - stop()함수에서 사용하기 위해서
+        gbtn = btn;
+
+        let res1 = document.querySelector("#result2");
+
+        vset = setInterval(function () {
+          let cr = parseInt(Math.random() * 256);
+          let cg = parseInt(Math.random() * 256);
+          let cb = parseInt(Math.random() * 256);
+
+          //res1.style.background = "rgb(" + cr + "," + cg + "," + cb +")";
+          res1.style.background = `rgb( ${cr}, ${cg} , ${cb})`;
+        }, 500);
+      };
+
+      const stop = () => {
+        //확인 버튼을 사용가능하도록 설정
+        gbtn.removeAttribute("disabled");
+        gbtn.style.background = "blue";
+        //다시 보이도록
+        //gbtn.style.display= "inline"
+
+        //setInterval의 실행을 멈춘다
+        clearInterval(vset);
+      };
+
+      //박스3에서 확인버튼 클릭------------------
+      const proc3 = (btn) => {
+        let res = document.querySelector("#result3");
+
+        //확인 버튼 비활성화 / 안보이도록 설정
+        btn.style.display = "none";
+        //btn.setAttribute("disabled", "disabled");
+
+        //지역변수 btn을 stop3() 사용 할 수 있도록 전역변수로 변경
+        gbtn3 = btn;
+
+        timerId = setTimeout(function tick() {
+          let cr = parseInt(Math.random() * 256);
+          let cg = parseInt(Math.random() * 256);
+          let cb = parseInt(Math.random() * 256);
+
+          //res1.style.background = "rgb(" + cr + "," + cg + "," + cb +")";
+          res.style.background = `rgb( ${cr}, ${cg} , ${cb})`;
+          //res.style.background = `#${cr.toString(16)}${cg.toString(16)}${cb.toString(16)}`;
+
+          timerId = setTimeout(tick, 500);
+        }, 500);
+      };
+
+      const stop3 = () => {
+        //setTimeout실행종료
+        clearTimeout(timerId);
+
+        //확인버튼다시 보이도록
+        gbtn3.style.display = "inline";
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <h3>
+        setTimeout(fn, millisec);
+        <br />
+        result1의 배경색을 바꾼다
+      </h3>
+      <input type="button" value="확인" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      <h3>
+        setInterval(fn, millisec) <br />
+        result2의 배경색을 바꾼다
+      </h3>
+      <input type="button" value="확인" onclick="proc2(this)" />
+      <input type="button" value="종료" onclick="stop()" />
+      <br /><br />
+
+      <div id="result2"></div>
+    </div>
+
+    <div class="box">
+      <h3>
+        중첩 setTimeout(fn 이름(){ }, millisec) <br />
+        setTimeout의 내부코드에서 다시 setTimeout을 호출한다<br />
+        호출시 fn이름이 필요하다<br />
+        result3의 배경색을 바꾼다<br />
+      </h3>
+      <input type="button" value="확인" onclick="proc3(this)" />
+      <input type="button" value="종료" onclick="stop3()" />
+      <br /><br />
+
+      <div id="result3"></div>
+    </div>
+  </body>
+</html>

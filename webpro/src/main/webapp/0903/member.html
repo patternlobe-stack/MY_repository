@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+
+<script>
+
+const getData = (url) =>{
+	
+	return  new Promise(function(resolve, reject) { 
+		
+		
+		const xhr = new XMLHttpRequest();
+		
+		xhr.open('get', url , true);
+		xhr.send();
+		
+		xhr.onload = function(){
+			
+			resolve(xhr.responseText);
+		}
+		
+		xhr.onerror = () =>{
+			reject(xhr.status);  // 200, 404, 403 , 500
+		}
+	});
+}
+
+const proc1 = () =>{
+	
+	getData("member.jsp")
+	.then(res=>{  //member.jsp에서 수행된 결과를 직렬화된 문자열로 받음
+		//javascript 변환 - 역직렬화 
+		 return JSON.parse(res);
+	})
+	.then(data =>{
+		//data변수 : javascript객체로 변환된 결괴값
+		
+		//출력모양 - 출력
+		code = "<table border='1'>"
+	    code += "<tr><th>아이디</th><th>이름</th><th>전화번호</th><th>이메일</th></tr>";
+	    
+	    data.forEach( (item, index) =>{
+	    	code += `<tr><td>${item['mem_id']}</td><td>${item['mem_name']}</td>`;
+	    	code += `<td>${item['mem_hp']}</td><td>${item['mem_mail']}</td></tr>`;
+	    })
+	    code += "</table>";
+	    document.querySelector('#result1').innerHTML = code ;
+		
+	})
+	.catch( err=> console.log(err))
+}
+</script>
+
+<style>
+table{
+  border : 2px solid blue;
+  border-collapse:  collapse;
+}
+
+td{
+  width : 150px;
+  height : 50px;
+  text-align: center;
+}
+
+th{
+height : 50px;
+background : skyblue;
+}
+</style>
+</head>
+<body>
+
+
+<div class="box">
+      <h3>
+      </h3>
+      <input type="button" value="memberList" onclick="proc1()" />
+      <br /><br />
+
+      <div id="result1"></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/public.css" />
+
+    <script>
+      const a_getProc = () => {
+        const xhr = new XMLHttpRequest();
+
+        //입력한 값을 가져온다
+        let vname = document.querySelector("#gname").value;
+        let vtel = document.querySelector("#gtel").value;
+
+        //응답
+        xhr.onreadystatechange = function () {
+          alert(this.readyState);
+
+          if (this.readyState == 4 && this.status == 200) {
+            vres = this.responseText;
+
+            document.querySelector("#result3").innerHTML = vres;
+          }
+        };
+
+        //전송(요청)
+        xhr.open("get", "form_aSync.jsp?name=" + vname + "&tel=" + vtel, true);
+        xhr.send();
+      };
+
+      const a_postProc = () => {
+        const xhr = new XMLHttpRequest();
+
+        //입력한 값을 가져온다
+        let vname = document.querySelector("#pname").value;
+        let vtel = document.querySelector("#ptel").value;
+
+        //전송 (요청)
+        data = "name=" + vname + "&tel=" + vtel;
+        xhr.open("post", "form_aSync.jsp", true);
+        xhr.setRequestHeader(
+          "content-type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.send(data);
+        
+        
+        //응답 
+        xhr.onload = function(){
+        	//alert(this.readyState);
+        	
+        	let  vres = this.responseText;
+        	
+        	document.querySelector('#result4').innerHTML = vres;
+        	
+        }
+        
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <h3>1. 동기방식 - get</h3>
+
+      <form action="form_Sync.jsp" method="get">
+        <label>이름</label>
+        <input type="text" name="name" /><br />
+
+        <label>전화번호</label>
+        <input type="text" name="tel" /><br />
+
+        <input type="submit" value="전송" />
+      </form>
+
+      <br /><br />
+
+      <div id="result1"></div>
+    </div>
+
+    <div class="box">
+      <h3>2 동기방식 - post</h3>
+
+      <form action="form_Sync.jsp" method="post">
+        <label>이름</label>
+        <input type="text" name="name" /><br />
+
+        <label>전화번호</label>
+        <input type="text" name="tel" /><br />
+
+        <input type="submit" value="전송" />
+      </form>
+
+      <br /><br />
+
+      <div id="result2"></div>
+    </div>
+
+    <div class="box">
+      <h3>3. 비동기방식 - get</h3>
+
+      <form>
+        <label>이름</label>
+        <input type="text" name="name" id="gname" /><br />
+
+        <label>전화번호</label>
+        <input type="text" name="tel" id="gtel" /><br />
+
+        <input type="button" value="전송" onclick="a_getProc()" />
+      </form>
+
+      <br /><br />
+
+      <div id="result3"></div>
+    </div>
+
+    <div class="box">
+      <h3>4. 비동기방식 -post</h3>
+
+      <form>
+        <label>이름</label>
+        <input type="text" name="name" id="pname" /><br />
+
+        <label>전화번호</label>
+        <input type="text" name="tel" id="ptel" /><br />
+
+        <input type="button" value="전송" onclick="a_postProc()" />
+      </form>
+
+      <br /><br />
+
+      <div id="result4"></div>
+    </div>
+
+    <!-- 
+content-type
+application/x-www-form-urlencoded
+ -->
+  </body>
+</html>
