@@ -36,10 +36,16 @@ app.get("/dbping", async (req, res) => {
   } catch (e) {
     res.status(500).json({
       ok: false,
-      message: e.message,
+      message: e?.message || String(e),
     });
   }
 });
+
+// =========================
+// Routes (IMPORTANT: before listen)
+// =========================
+const scheduleRoutes = require("./routes/schedule.routes");
+app.use("/api/schedule", scheduleRoutes);
 
 // =========================
 // Server Start
@@ -48,5 +54,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server running on", PORT);
 });
-const scheduleRoutes = require("./routes/schedule.routes");
-app.use("/api/schedule", scheduleRoutes);
