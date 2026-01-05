@@ -202,6 +202,11 @@ exports.getMonthlySchedule = async (req, res) => {
       dataByDate,
     });
   } catch (e) {
-    res.status(500).json({ ok: false, message: e.message });
+    console.error("MONTH API ERROR:", e);
+    res.status(500).json({
+      ok: false,
+      message: e?.message || String(e),
+      code: e?.code,
+    });
   }
 };
