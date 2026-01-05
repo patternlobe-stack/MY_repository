@@ -1,4 +1,3 @@
-// db/pool.js
 const mysql = require("mysql2/promise");
 
 function must(v, name) {
@@ -6,13 +5,14 @@ function must(v, name) {
   return v;
 }
 
+const url =
+  process.env.MYSQL_URL || process.env.DATABASE_URL || process.env.JAWSDB_URL; // 혹시 몰라서
+
 let pool;
 
-if (process.env.MYSQL_URL) {
-  // ✅ Railway가 mysql://user:pass@host:port/db 형태로 주는 경우
-  pool = mysql.createPool(process.env.MYSQL_URL);
+if (url) {
+  pool = mysql.createPool(url);
 } else {
-  // ✅ Render/Railway 환경변수 5종으로 주는 경우
   pool = mysql.createPool({
     host: must(process.env.MYSQL_HOST, "MYSQL_HOST"),
     port: Number(process.env.MYSQL_PORT || 3306),
@@ -22,8 +22,7 @@ if (process.env.MYSQL_URL) {
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    // 필요하면 아래 추가(일부 환경에서 필수)
-    // ssl: { rejectUnauthorized: false },
+    // ssl: { rejectUnauthorized: false }, // 필요할 때만
   });
 }
 
