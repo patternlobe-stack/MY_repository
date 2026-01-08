@@ -29,14 +29,18 @@ const pool = mysql.createPool({
 // =========================
 // DB Ping Test
 // =========================
+// dbping (디버그용)
 app.get("/dbping", async (req, res) => {
   try {
+    const pool = require("./db/pool"); // index.js 기준 경로
     const [rows] = await pool.query("SELECT 1 AS ok");
-    res.json({ ok: true, rows });
-  } catch (e) {
-    res.status(500).json({
+    return res.json({ ok: true, rows });
+  } catch (err) {
+    return res.status(500).json({
       ok: false,
-      message: e?.message || String(e),
+      code: err.code || null,
+      errno: err.errno || null,
+      message: err.message || "Error",
     });
   }
 });
