@@ -45,7 +45,7 @@ app.get("/dbping", async (req, res) => {
   }
 });
 
-// =========================
+// =======================
 // Routes (IMPORTANT: before listen)
 // =========================
 const scheduleRoutes = require("./routes/schedule.routes");
